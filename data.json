@@ -1,12 +1,8 @@
 {
 	"artists": [
 
-		{"username": "xlr8r"},
 		{"username": "cosmonostro"},
-		{"username": "astronautica"},
-		{"username": "jakarta-records"},
-		{"username": "ghostly"},
-		{"username": "wearealaya"}
+		{"username": "brainfeeder"}
 	],
 
 	"soundcloud_client": {

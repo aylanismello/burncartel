@@ -1,9 +1,5 @@
 var app = angular.module('myapp', []);
 
-// window.onkeydown = function(e) {
-// 		return !(e.keyCode == 32); //disable spacebar..
-// };
-
 function DataService(){
 	var feedz_ = [];
 	var loadState = false;
@@ -16,10 +12,7 @@ function DataService(){
 		audio: null
 	};
 
-
-
 	this.toggle = function(){
-
 
 		if(currentTrack['index'] == -1){ // just start this shit off...
 			console.log('playin first of all...');
@@ -221,6 +214,22 @@ app.controller('playCtrl', function(DataService){
 			self.playPause(newIndex);
 	};
 
+	self.key = function(e){
+		console.log(e.charCode);
+		if (e.charCode == 32) {
+    	e.preventDefault();
+			DataService.toggle();
+  	}
+		else if(e.charCode == 46){ //right
+			self.hasNext();
+		}
+		else if(e.charCode == 44){ //left
+			self.hasPrev();
+		}
+		
+
+	};
+
 	self.toggle = function(){ // for pausing/playing from BC play button
 		DataService.toggle();
 	};
@@ -240,6 +249,8 @@ app.controller('playCtrl', function(DataService){
 			return 'paused';
 
 	};
+
+
 
 	self.getCurrentTrack = function(){
 		return DataService.getCurrentTrack();
