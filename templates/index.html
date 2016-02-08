@@ -1,15 +1,17 @@
 <html ng-app="myapp" ng-controller="getCtrl as get_ctrl">
 <head>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="{{url_for('static', filename='animate.css')}}">
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,500' rel='stylesheet' type='text/css'>
 	<link href="{{url_for('static', filename='main.css')}}" rel='stylesheet' type='text/css'>
+
 </head>
 <body ng-controller="playCtrl as play_ctrl" ng-keypress="($event.charCode==13)?play_ctrl.toggle():return" >
 <!-- space:32, enter:13, right:39, left: 40 -->
 
-<div class='center'>
+<div class='center' data-role="page">
 
-	<div > <!-- this is the top bar that never moves -->
+	<div class='header' data-role="header" data-position="fixed"> <!-- this is the top bar that never moves -->
 
 		<h1>
 			<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
@@ -20,19 +22,22 @@
 
 	</div> <!--HII-->
 
-	<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
+
 
 	</br></br>
 
+	<div class='content ui-content'  data-role = "main">
+		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
+		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
-	<div ng-show='get_ctrl.getLoadState()' class='center' data-ng-repeat="f in get_ctrl.getFeed() track by $index">
+			<img class='paused' ng-click='play_ctrl.playPause($index)' src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+			<h2 ng-bind='f.username'></h2>
+			<h3 ng-bind='f.track.title'></h3>
+		</br></br>
 
-		<img class='paused' ng-click='play_ctrl.playPause($index)' src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-		<h2 ng-bind='f.username'></h2>
-		<h3 ng-bind='f.track.title'></h3>
-	</br></br>
-
+		</div>
 	</div>
+
 </div>
 
 
@@ -47,6 +52,9 @@
 	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}">
 	</script>
 	<script src="{{url_for('static', filename='main.js')}}"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
 </html>

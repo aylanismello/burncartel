@@ -1,6 +1,23 @@
 body{
+	margin:0px;
 	font-family: 'Raleway', sans-serif;
 }
+/*.header{
+
+	position:fixed;
+	height:50px;
+    background:#F0F0F0;
+    border:1px solid #CCC;
+    width:100%;
+    margin:0px auto;
+}
+.content{
+	width:100%;
+     background: #F0F0F0;
+     border: 1px solid #CCC;
+     height: 2000px;
+     margin: 200px auto;
+}*/
 .playback{
 	border: none;
 	color: white;
