@@ -56,6 +56,7 @@ function DataService(){
 	};
 
 	this.pauseCurrentTrack = function(idtho){
+		DataService.setTrackPos(currentTrack['audio'].duration);
 		console.log('pausing.');
 		currentTrack['playingBool'] = false;
 		currentTrack['audio'].pause();
@@ -112,6 +113,10 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
 
 
+	self.getNewBurn = function(){
+			console.log('querying database for new everything');
+	};
+
 	self.echo = function(i){
 		console.log('echoQQ');
 		return i;
@@ -143,7 +148,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		state: {
 			playBool: 0,
 			playText: '',
-			audioObject: null
+			audioObject: null,
+			position: 0
 		}
 
 	};
@@ -226,7 +232,7 @@ app.controller('playCtrl', function(DataService){
 		else if(e.charCode == 44){ //left
 			self.hasPrev();
 		}
-		
+
 
 	};
 

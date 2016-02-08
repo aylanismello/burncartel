@@ -10,6 +10,7 @@ body{
 .playback{
 	border: none;
 	color: white;
+	padding-top:0px;
 	padding: 8px 23px;
 	text-align: center;
 	text-decoration: none;
@@ -25,11 +26,30 @@ body{
 		box-shadow:5px 5px 20px #807E7E;
 
 }
+.settings{
+	padding-top:0px;
+	background-color: #EFEFEF;
+	position:fixed; bottom:0px;
+	padding-bottom: 1.5em;
+		z-index:100000; width:100%;
+		box-shadow:5px 5px 20px #807E7E;
+}
+#track-title{
+	padding-bottom: 0em;
+}
+#burn{
+	background-color: #810022;
+	width: 1.5em;
+}
 .content{
 	width:auto;
 	margin:auto;
 	padding-top:14em;
+	height:1000px;
 
+}
+.left{
+	text-align:left;
 }
 footer{
 	padding-top: 1.7em;

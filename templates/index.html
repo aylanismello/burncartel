@@ -17,7 +17,8 @@
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-		<button id='prev' class='playback btn' ng-click='play_ctrl.hasPrev()'>Prev</button>
+
+		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 
 	</div> <!--HII-->
@@ -27,20 +28,36 @@
 	</br></br>
 
 	<div class='content'>
+
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
 			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
 			<h2 ng-bind='f.username'></h2>
-			<h3 ng-bind='f.track.title'></h3>
-		</br></br>
-
+			<h3 id="track-title" ng-bind='f.track.title'></h3>
 		</div>
 		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 	</div>
 
 </div>
+
+
+<footer class='center settings'>
+	<select>
+		<option value="future-beats">Future Beats</option>
+		<option value="south-american">South American</option>
+		<option value="hip-hop">Hip Hop</option>
+		<option value"electro">Electro</option>
+
+
+	</select>
+
+	Basic <input min="0" max="5" type='range' value='5' name='Eclectic'>Eclectic
+	<img ng-click='get_ctrl.getNewBurn()' id='burn' src={{url_for('static', filename='flame.svg')}}>
+
+
+	</footer>
 
 
 <footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
