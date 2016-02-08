@@ -1,6 +1,6 @@
 <html ng-app="myapp" ng-controller="getCtrl as get_ctrl">
 <head>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
 	<link rel="stylesheet" href="{{url_for('static', filename='animate.css')}}">
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,500' rel='stylesheet' type='text/css'>
 	<link href="{{url_for('static', filename='main.css')}}" rel='stylesheet' type='text/css'>
@@ -11,13 +11,13 @@
 
 <div class='center' data-role="page">
 
-	<div class='header' data-role="header" data-position="fixed"> <!-- this is the top bar that never moves -->
+	<div class='header' > <!-- this is the top bar that never moves -->
 
-		<h1>
+
 			<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
-		</h1>
+		
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
+		<button id='prev' class='playback btn' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 
 	</div> <!--HII-->
@@ -26,7 +26,7 @@
 
 	</br></br>
 
-	<div class='content ui-content'  data-role = "main">
+	<div class='content'>
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
@@ -45,16 +45,13 @@
 
 </body>
 
-<footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+<div ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
 	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
 
 
 	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}">
 	</script>
 	<script src="{{url_for('static', filename='main.js')}}"></script>
-
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
 </html>

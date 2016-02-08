@@ -1,23 +1,12 @@
+//Map the correct css style to create the fixed position
+div#header-fixed {position:fixed; top:0px; margin:auto;
+	z-index:100000; width:100%;}
+div#my-menus {background:#000; height:75px; opacity:0.8}
+
 body{
 	margin:0px;
 	font-family: 'Raleway', sans-serif;
 }
-/*.header{
-
-	position:fixed;
-	height:50px;
-    background:#F0F0F0;
-    border:1px solid #CCC;
-    width:100%;
-    margin:0px auto;
-}
-.content{
-	width:100%;
-     background: #F0F0F0;
-     border: 1px solid #CCC;
-     height: 2000px;
-     margin: 200px auto;
-}*/
 .playback{
 	border: none;
 	color: white;
@@ -26,6 +15,19 @@ body{
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
+}
+.header{
+	padding-top:0px;
+	background-color: #EFEFEF;
+	position:fixed; top:0px;
+	padding-bottom: 1.5em;
+		z-index:100000; width:100%;
+
+}
+.content{
+	margin:auto;
+	padding-top:14em;
+
 }
 #prev{
 	background-color: #810022
@@ -43,10 +45,11 @@ body{
 	text-align: center;
 }
 #logo{
+	padding-top: 0px;
 	width: 300px;
 }
-h2, h3, h4{
-	visible: hidden;
+
+h1, h2, h3, h4{
 	padding-bottom: 0px;
 	padding-top: 0px;
 }
