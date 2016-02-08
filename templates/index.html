@@ -9,9 +9,19 @@
 <body ng-controller="playCtrl as play_ctrl" ng-keypress="play_ctrl.key($event)" >
 <!-- space:32, enter:13, right:39, left: 40 ($event.charCode==13)?play_ctrl.toggle():return-->
 
-<div class='center' data-role="page">
+<div class='center'>
 
-	<div class='header' > <!-- this is the top bar that never moves -->
+	<div class='header-mobile' > <!-- this is the top bar that never moves -->
+
+
+		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
+		ng-swipe-left='play_ctrl.hasPrev()' ng-swipe-right='play_ctrl.hasNext()'>
+
+
+
+	</div> <!--HII-->
+
+	 <!-- <div class='header' >
 
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
@@ -21,19 +31,24 @@
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 
-	</div> <!--HII-->
+	</div> -->
+
+
+
+
 
 
 
 	</br></br>
 
-	<div class='content'>
+<div class='content'>
 
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' ng-swipe-left='play_ctrl.hasPrev()'
+				ng-swipe-right='play_ctrl.hasNext()'>
 			<h2 ng-bind='f.username'></h2>
 			<h3 id="track-title" ng-bind='f.track.title'></h3>
 		</div>
@@ -42,27 +57,61 @@
 
 </div>
 
+<!-- <div class='content-mobile'>
 
-<footer class='center settings'>
-	<select>
-		<option value="future-beats">Future Beats</option>
-		<option value="south-american">South American</option>
-		<option value="hip-hop">Hip Hop</option>
-		<option value"electro">Electro</option>
+		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
+		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
+			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
+			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' >
+			<h2 ng-bind='f.username'></h2>
+			<h3 id="track-title" ng-bind='f.track.title'></h3>
+		</div>
+		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
+</div> -->
 
-	</select>
-
-	Basic <input min="0" max="5" type='range' value='5' name='Eclectic'>Eclectic
-	<img ng-click='get_ctrl.getNewBurn()' id='burn' src={{url_for('static', filename='flame.svg')}}>
-
-
-	</footer>
+</div>
 
 
-<footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+
+
+
+
+<footer class='center settings-mobile'>
+
+	<span> <button>GENRES</button> <button>CURRENT TRACK</button> <button>PLAYLIST</button> </span>
+
+
+
+</footer>
+
+
+<!-- <footer class='center settings'>
+
+
+		<select selected='future-beats' ng-model='genre'>
+			<option value="future-beats">Future Beats</option>
+			<option value="south-american">South American</option>
+			<option value="hip-hop">Hip Hop</option>
+			<option value"electro">Electro</option>
+
+
+		</select>
+
+		Basic <input min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
+
+		<img ng-click='get_ctrl.getNewBurn()' id='burn' src={{url_for('static', filename='flame.svg')}}/>
+
+
+
+</footer> -->
+
+
+
+
+<!-- <footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
 	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
-
+ -->
 
 
 </body>
@@ -71,6 +120,7 @@
 
 	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}">
 	</script>
+	<script src="{{url_for('static', filename='bower_components/angular-touch/angular-touch.min.js')}}"></script>
 	<script src="{{url_for('static', filename='main.js')}}"></script>
 
 

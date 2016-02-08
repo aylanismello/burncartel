@@ -1,7 +1,35 @@
-//Map the correct css style to create the fixed position
-div#header-fixed {position:fixed; top:0px; margin:auto;
-	z-index:100000; width:100%;}
-div#my-menus {background:#000; height:75px; opacity:0.8}
+/* Portrait */
+/*@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+		.header{
+			display: none;
+		}
+		.settings {
+			display: none;
+		}
+		.settings-mobile{
+
+		}
+		.playback{
+			display:none;
+		}
+		#id-track{
+			display:none;
+		}
+
+
+
+
+}*/
+
+/*@media (max-width: 640px) {  when max-width is less than this...
+
+
+
+}*/
 
 body{
 	margin:0px;
@@ -26,13 +54,33 @@ body{
 		box-shadow:5px 5px 20px #807E7E;
 
 }
+.header-mobile{
+	padding-top:0px;
+	background-color: #EFEFEF;
+	position:fixed; top:0px;
+	padding-bottom: 1.5em;
+		z-index:100000; width:100%;
+		box-shadow:5px 5px 20px #807E7E;
+	/*display:inline;*/
+}
 .settings{
+	display: none;
 	padding-top:0px;
 	background-color: #EFEFEF;
 	position:fixed; bottom:0px;
 	padding-bottom: 1.5em;
 		z-index:100000; width:100%;
 		box-shadow:5px 5px 20px #807E7E;
+}
+.settings-mobile{
+
+	/*padding-top:0px;*/
+	background-color: #EFEFEF;
+	position:fixed; bottom:0px;
+	padding-bottom: 1.5em;
+		z-index:100000; width:100%;
+		box-shadow:5px 5px 20px #807E7E;
+	/*display:inline;*/
 }
 #track-title{
 	padding-bottom: 0em;
@@ -45,7 +93,7 @@ body{
 	width:auto;
 	margin:auto;
 	padding-top:14em;
-	height:1000px;
+	/*height:1000px;*/
 
 }
 .left{
@@ -55,6 +103,7 @@ footer{
 	padding-top: 1.7em;
 	padding-bottom: 0.6em;
 }
+
 #prev{
 	background-color: #810022
 }

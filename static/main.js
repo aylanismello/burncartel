@@ -1,4 +1,4 @@
-var app = angular.module('myapp', []);
+var app = angular.module('myapp', ['ngTouch']);
 
 function DataService(){
 	var feedz_ = [];
@@ -9,7 +9,8 @@ function DataService(){
 		id: -1,
 		index: -1,
 		playingBool: false,
-		audio: null
+		audio: null,
+		pos: 0
 	};
 
 	this.toggle = function(){
@@ -24,9 +25,10 @@ function DataService(){
 
 		}
 		else if(currentTrack['playingBool']){
-			currentTrack['audio'].pause();
+			this.pauseCurrentTrack();
+			// currentTrack['audio'].pause();
 
-			currentTrack['playingBool'] = false;
+			// currentTrack['playingBool'] = false;
 
 		}
 		else{
@@ -35,6 +37,11 @@ function DataService(){
 		}
 
 
+	};
+
+	this.setTrackPos = function(pos){
+		feedz_[currentTrack['index']].state.pos = pos;
+		console.log('set to ' + feedz_[currentTrack['index']].state.pos);
 	};
 
 	this.getFeedSize = function(){
@@ -56,7 +63,10 @@ function DataService(){
 	};
 
 	this.pauseCurrentTrack = function(idtho){
-		DataService.setTrackPos(currentTrack['audio'].duration);
+
+
+		// just set track pos..
+
 		console.log('pausing.');
 		currentTrack['playingBool'] = false;
 		currentTrack['audio'].pause();
@@ -81,6 +91,8 @@ function DataService(){
 		currentTrack['index'] = idtho;
 		currentTrack['title'] = feedz_[idtho].track.title;
 		currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
+
+
 		currentTrack['audio'].play();
 		currentTrack['playingBool'] = true;
 		console.log('now playing ' + currentTrack['title']);
@@ -112,10 +124,12 @@ app.service('DataService', [DataService]);
 app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
 
+	$scope.getNewBurn = function(){
+		console.log('querying new bern.');
 
-	self.getNewBurn = function(){
-			console.log('querying database for new everything');
 	};
+
+
 
 	self.echo = function(i){
 		console.log('echoQQ');
@@ -274,7 +288,7 @@ app.controller('playCtrl', function(DataService){
 		console.log('playin ' + idtho);
 
 		if( (DataService.getPlayState() == false) && (idtho != DataService.getCurrentTrackIndex() ) ){
-			DataService.playCurrentTrack(idtho); // diff track, from pause state.
+			DataService.playCurrentTrack(idtho); // diff track, from pause state. also first time
 			console.log('diff track from pause state');
 		}
 		else if( (DataService.getPlayState() == true) && (idtho != DataService.getCurrentTrackIndex() ) ){
