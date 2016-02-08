@@ -22,12 +22,18 @@ body{
 	position:fixed; top:0px;
 	padding-bottom: 1.5em;
 		z-index:100000; width:100%;
+		box-shadow:5px 5px 20px #807E7E;
 
 }
 .content{
+	width:auto;
 	margin:auto;
 	padding-top:14em;
 
+}
+footer{
+	padding-top: 2em;
+	padding-bottom: 0.6em;
 }
 #prev{
 	background-color: #810022

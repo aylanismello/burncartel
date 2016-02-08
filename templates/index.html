@@ -14,8 +14,8 @@
 	<div class='header' > <!-- this is the top bar that never moves -->
 
 
-			<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
-		
+		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
+
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
 		<button id='prev' class='playback btn' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
@@ -30,23 +30,25 @@
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
-			<img class='paused' ng-click='play_ctrl.playPause($index)' src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)' src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
 			<h2 ng-bind='f.username'></h2>
 			<h3 ng-bind='f.track.title'></h3>
 		</br></br>
 
 		</div>
+		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 	</div>
 
 </div>
 
 
+<footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
+
 
 
 </body>
 
-<div ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
-	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
 
 
 	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}">

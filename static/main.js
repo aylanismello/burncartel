@@ -118,6 +118,11 @@ app.service('DataService', [DataService]);
 app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
 
+
+	self.echo = function(i){
+		console.log('echoQQ');
+		return i;
+	};
 	// $scope joins controller with views
 	self.shout = function(){
 		alert("SHOUT!");

@@ -1,0 +1,3 @@
+# burncartel
+
+just starting out
