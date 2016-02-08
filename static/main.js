@@ -41,6 +41,9 @@ function DataService(){
 
 	};
 
+	this.getFeedSize = function(){
+		return feedz_.length;
+	};
 
 	this.setLoadState = function(){
 		loadState = true;
@@ -78,49 +81,11 @@ function DataService(){
 
 		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SONG.
 
-
 		currentTrack['index'] = idtho;
 		currentTrack['title'] = feedz_[idtho].track.title;
 		currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
 		currentTrack['audio'].play();
 		currentTrack['playingBool'] = true;
-		//
-		//
-		// if(currentTrack['index'] == -1){ //first
-		// 	currentTrack['index'] = idtho;
-		// 	currentTrack['title'] = feedz_[idtho].track.title;
-		// 	currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
-		// 	currentTrack['audio'].play();
-		// 	currentTrack['playingBool'] = true;
-		// }
-		// else{ // not first
-		//
-		// }
-		//
-		// if(idtho != currentTrack['index']){ // new song OR first song
-		// 	if(currentTrack['index'] != -1){ // new song
-		// 		console.log('change song midway.., pausing ' + currentTrack['title']);
-		// 		currentTrack['audio'].pause();//stop old song.
-		// 	}
-		// 	else{ // first song
-		// 		console.log('first song!');
-		// 	}
-		//
-		// 	// else if first song, do everyhing
-		// 	currentTrack['index'] = idtho;
-		// 	currentTrack['title'] = feedz_[idtho].track.title;
-		// 	currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
-		// 	currentTrack['audio'].play();
-		//
-		//
-		// 	currentTrack['playingBool'] = true;
-		//
-		// }
-		// else{
-		// 	console.log('playing/pausing track from image.');
-		// 	currentTrack['audio'].play();
-		// 	currentTrack['playingBool'] = true;
-		// }
 		console.log('now playing ' + currentTrack['title']);
 
 	};
@@ -129,7 +94,7 @@ function DataService(){
 		return currentTrack['title'];
 	};
 
-	this.getCurrentTrackID = function(){
+	this.getCurrentTrackIndex = function(){
 		return currentTrack['index'];
 	}
 
@@ -190,10 +155,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	then(function(response){
 		console.log("HELLOO");
 		var r = response.data.myjson;
-		// console.log('my data is ' + r.items);
 		console.log('my feeds start with user ' + r[0].username)
-		// here is where we convert the array of dicts into some we use here...
-		// $scope.feeds = r.items;
 		$scope.feeds = r;
 		self.prepWork();
 		console.log('set that state tho');
@@ -226,6 +188,25 @@ app.controller('getCtrl', function($scope, $http, DataService){
 app.controller('playCtrl', function(DataService){
 	var self = this;
 
+
+	self.hasNext = function(){
+
+		var newIndex = DataService.getCurrentTrackIndex();
+		newIndex++;
+		console.log( newIndex + ' less than ?? ' + DataService.getFeedSize() );
+		if( newIndex < DataService.getFeedSize() )
+			self.playPause(newIndex);
+
+
+	};
+
+	self.hasPrev = function(){
+		var newIndex = DataService.getCurrentTrackIndex();
+		newIndex--;
+		if(0 <= newIndex)
+			self.playPause(newIndex);
+	};
+
 	self.toggle = function(){ // for pausing/playing from BC play button
 		DataService.toggle();
 	};
@@ -239,7 +220,7 @@ app.controller('playCtrl', function(DataService){
 
 	self.isPlaying = function(i){ // to show on/off visuals on track art
 
-		if(DataService.getCurrentTrackID() == i)
+		if(DataService.getCurrentTrackIndex() == i)
 			return 'playing';
 		else
 			return 'paused';
@@ -254,15 +235,17 @@ app.controller('playCtrl', function(DataService){
 
 	self.playPause = function(idtho){
 
-		if( (DataService.getPlayState() == false) && (idtho != DataService.getCurrentTrackID() ) ){
+		console.log('playin ' + idtho);
+
+		if( (DataService.getPlayState() == false) && (idtho != DataService.getCurrentTrackIndex() ) ){
 			DataService.playCurrentTrack(idtho); // diff track, from pause state.
 			console.log('diff track from pause state');
 		}
-		else if( (DataService.getPlayState() == true) && (idtho != DataService.getCurrentTrackID() ) ){
+		else if( (DataService.getPlayState() == true) && (idtho != DataService.getCurrentTrackIndex() ) ){
 			DataService.playAndUpdateTrack(idtho); //diff track, from play state
 			console.log('diff track from play state');
 		}
-		else if(idtho == DataService.getCurrentTrackID()) // same track, played or paused..
+		else if(idtho == DataService.getCurrentTrackIndex() ) // same track, played or paused..
 		{
 			console.log('just toggling');
 			self.toggle();
