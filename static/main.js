@@ -3,12 +3,24 @@ var app = angular.module('myapp', []);
 
 function DataService(){
 	var feedz_ = [];
+	var loadState = false;
+
 	var currentTrack = {
 		title: 'Welcome to FireFeed.',
 		id: -1,
 		index: -1,
 		playingBool: false,
 		audio: null
+	};
+
+
+
+	this.setLoadState = function(){
+		loadState = true;
+	};
+
+	this.getLoadState = function(){
+		return loadState;
 	};
 
 
@@ -85,6 +97,14 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 	// $scope joins controller with views
 
+	self.setLoadState = function(){
+		DataService.setLoadState();
+	};
+
+	self.getLoadState= function(){
+		console.log(DataService.getLoadState());
+		return DataService.getLoadState();
+	};
 
 	self.feed = {
 		id: 0,
@@ -121,6 +141,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		// $scope.feeds = r.items;
 		$scope.feeds = r;
 		self.prepWork();
+		console.log('set that state tho');
+		DataService.setLoadState();
 	});
 
 
@@ -170,16 +192,12 @@ app.controller('playCtrl', function(DataService){
 
 		var c = DataService.getCurrentTrackID();
 
-		console.log(i + " and " + c);
 
-		if(c == i){
-			// alert('FUCK');
-			console.log('returning black');
+		if(c == i)
 			return 'playing';
-		}
-		else{
+		else
 			return 'paused';
-		}
+
 	};
 
 	self.getCurrentTrack = function(){
