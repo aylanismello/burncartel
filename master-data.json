@@ -1,0 +1,56 @@
+{
+	"artists": [
+		"southamerican": [
+			{"username": "zzkrecords"},
+			{"username": "thumpmx"},
+			{"username": "frentebolivarista"}
+	],
+		"eclectronic": [
+			{"username": "soulection"},
+			{"username": "pigeonsandplanes"},
+			{"username": "teamsupreme"},
+			{"username": "alphapup"},
+			{"username": "owsla"},
+			{"username": "nesthq"},
+			{"username": "hegemon"},
+			{"username": "foreignfamily"},
+			{"username": "brainfeeder"},
+			{"username": "huhwhatandwhere"},
+			{"username": "future"},
+			{"username": "soulettiquette"},
+			{"username": "baewave"},
+			{"username": "movingcastle"},
+			{"username": "noisey"},
+			{"username": "mrsuicidesheep"},
+			{"username": "warprecords"},
+			{"username": "c2cdjs"}
+		],
+		"hiphop": [
+			{"username": "stonesthrow"},
+			{"username": "ninjatune"}
+		],
+		"asian": [
+			{"username": "dohits"}
+		],
+		"techno": [
+			{"username": "xlr8r"},
+			{"username": "cosmonostor"},
+			{"username": "astronautica"},
+			{"username": "jakartarecords"},
+			{"username": "ghostly"},
+			{"username": "wearealaya"}
+		],
+		"bangerz": [
+			{"username": "maddecent"}
+		]
+
+
+
+	],
+
+	"soundcloud_client": {
+		"id": "282558e0e8cdcd8a9b3ba2b4917596b7"
+	}
+
+
+}
