@@ -1,0 +1,210 @@
+<html ng-app='playApp'>
+	<head>
+		<link rel="stylesheet" href="./animate.css"></link>
+		<style>
+			.play{
+				background-color: #961D1D;
+			}
+			.pause{
+				background-color: #34339E;
+			}
+			.center{
+				text-align: center;
+			}
+			#logo{
+				width: 300px;
+			}
+		</style>
+	</head>
+
+<body ng-controller='Ctrl as playCtrl'>
+<!-- so we have all this data from the artists in hurr.... in Jinja. -->
+
+	<div class='center'> <!-- this is the top bar that never moves -->
+		<h1>
+			<img id='logo' ng-click='playCtrl.setPlayer()'
+				ng-class='playCtrl.getAnimateState(playCtrl.playBool)' src='../static/images/BC1.png'>
+		</h1>
+		<h3 ng-bind='playCtrl.currentTrack'>Fire Feed.</h3>
+		<button ng-click='playCtrl.setPlayer()' ng-bind='playCtrl.playStatus'
+			ng-class='playCtrl.getClass(playCtrl.playBool)'></button>
+	</div>
+
+
+
+
+	<div ng-repeat="track in playCtrl.tracks">
+
+		<span ng-bind="track"></span>
+		<button ng-click='playCtrl.playNow(track)'>PLAY</button>
+
+	</div>
+
+
+
+
+
+
+	Play boolean is: {{playCtrl.playBool}} NEW SHIT ABOVE
+
+	</br>
+
+
+	<ul>
+			<li>
+				<span>Eyes on U</span>
+					<button ng-click='playCtrl.setPlayer()' ng-bind='playCtrl.playStatus'
+						ng-class='playCtrl.getClass(playCtrl.playBool)'>{{playCtrl.dur}}</button>
+
+			</li>
+
+			<li>
+				<span>I Want U</span>
+				<button ng-click='playCtrl.setPlayer()' ng-bind='playCtrl.playStatus'
+					ng-class='playCtrl.getClass(playCtrl.playBool)'></button>
+			</li>
+
+
+	</uL>
+
+		<span ng-bind='playCtrl.dur'></span>
+
+</body>
+
+
+<script src="./angular.min.js"> </script>
+
+
+
+<script type="text/javascript">
+
+// let's say we have multiple songs here..
+// var currentTrack;
+var track1 = new Audio('eyesOnU.mp3');
+var track2 = new Audio('iWantU.mp3');
+
+
+angular.module('playApp', []).controller('Ctrl',[function(){
+		var self = this;
+		// self.currentTrack;
+
+
+		self.dur = 0;
+		self.playBool = false;
+		self.playStatus = 'pause';
+		self.currentTrack = '';
+
+		var count = 0; // pause
+		self.notes = [
+			{label: 'First', done: false, assignee: 'Aylan'},
+			{label: 'Second', done: false, assignee: 'Clarice'},
+			{label: 'Third', done: true}
+		];
+
+
+		self.tracks = ['eyes on u', 'i want u'];
+		self.audios = {'eyes on u': track1, 'i want u': track2}
+
+		self.playDisplay = ['pause', 'play'];
+
+		self.getAnimateState = function(status){
+			console.log("YO");
+			if(self.playBool)
+				return "animated infinite pulse";
+			else
+				return ""
+		};
+
+		self.getClass = function(status){
+			// console.log("play is " )
+			return{
+				play: status, pause: !status,
+			};
+		};
+
+		self.updateDuration = function(){
+
+			self.dur = track1.currentTime;
+			// console.log("in, with value of " + self.dur);
+			window.setTimeout(self.updateDuration);
+
+		};
+
+		self.getDuration = function(){
+
+			window.setTimeout(self.getDuration);
+		}
+
+		// receives id, cr
+		self.playNow = function(theTitle){
+			self.playBool = !self.playBool;
+
+			if(self.playBool){
+				self.currentTrack = theTitle;
+				self.audios[theTitle].play();
+				console.log("playing " + self.currentTrack);
+			}
+			else{
+				self.audios[theTitle].pause();
+			}
+
+
+
+		};
+
+		self.setPlayerNow = function(theTitle){
+			// self.playBool = !self.playBool;
+			// console.log('playing ' + theTitle);
+
+
+			// if(self.playBool)
+			// 	self.tracks
+			// else
+			// 	self.tracks[id].pause();
+
+		};
+
+		self.setPlayer = function(){
+			self.playBool = !self.playBool;
+
+			if(self.playBool){
+				self.playStatus = self.playDisplay[1];
+				console.log("playing");
+				track2.play();
+				window.setTimeout(self.updateDuration);
+				console.log("do i ever get here?");
+			}
+			else{
+				self.playStatus = self.playDisplay[0];
+				track2.pause();
+			}
+			// count++;
+		};
+
+		self.getBalls = function(){
+
+
+			return track1.duration;
+		};
+
+		self.getPlayer = function(){
+			return "HI";
+			if(self.playBool)// play
+				return self.playDisplay[0]
+			else
+				return self.playDisplay[1]
+		};
+
+
+
+		self.getNoteClass = function(status){
+			return{
+				play: status, pause: !status
+			};
+		};
+
+	}]);
+
+</script>
+
+</html>

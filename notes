@@ -1,0 +1,15 @@
+self.artistInfo = {
+	'ID': '',
+	'username': '',
+	'avatar_url': '',
+	'track': {
+		'ID': '',
+		'title': '',
+		'url': '',
+		'artwork_url': ''
+	}
+}
+
+
+
+will be passed to play.html as "infoz"

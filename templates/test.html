@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="./angular.min.js"></script>
+    <script src="todo.js"></script>
+
+  </head>
+  <body ng-app>
+
+		<input type="text" ng-model="name" placeholder="Enter your name">
+
+
+		<h1>Hello <span ng-bind="name"></span></h1>
+
+
+		<input type="checkbox" ng-model="play">
+		<input type="checkbox" ng-model="play">
+			
+		<span ng-bind="play"></span>
+
+
+
+
+  </body>
+</html>

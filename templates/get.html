@@ -1,0 +1,50 @@
+<html ng-app='myApp'>
+
+<head>
+	<title>$http get example</title>
+	<style>
+		.item{
+			padding: 10px;
+		}
+	</style>
+</head>
+
+
+
+<body>
+
+
+	<div ng-controller="myController as c">
+    {{data.time}}
+
+    <br/>
+    <button ng-click="c.updateTime()">update time - ng-click</button>
+    <button id="updateTimeButton"  >update time</button>
+	</div>
+
+
+	<script src= "{{ url_for('static', filename='bower_components/angular/angular.js') }}" </script>
+	<script>
+
+
+
+    angular.module('myApp', []).
+			controller("myController", function() {
+
+        this.data = { time : new Date() };
+
+        this.updateTime = function() {
+            this.data.time = new Date();
+        }
+
+        document.getElementById("updateTimeButton")
+                .addEventListener('click', function() {
+            console.log("update time clicked");
+            this.data.time = new Date();
+        });
+    });
+
+	</script>
+
+</body>
+</html>

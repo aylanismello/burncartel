@@ -1,0 +1,31 @@
+<html ng-app="notesApp">
+<head><title>Hello angular></title></head>
+
+<body ng-controller="MainCtrl as ctrl">
+	{{ctrl.message}} BC.
+	<br/>
+
+	<button ng-click="ctrl.changeMessage()">
+		Play
+	<button>
+
+
+<script src="./angular.min.js"></script>
+
+<script type="text/javascript">
+	angular.module('notesApp', [])
+		.controller('MainCtrl', function(){
+			var x = ['play', 'pause'];
+			var i = 0;
+			var self = this;
+			self.message = 'Hello ';
+			self.changeMessage = function(){
+				i++;
+				self.message = x[i%2];
+			};
+
+		});
+</script>
+
+</body>
+</html>

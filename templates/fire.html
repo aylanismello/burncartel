@@ -1,0 +1,54 @@
+<html>
+<title>Fire Feed</title>
+<head>
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+
+</head>
+
+<body>
+
+<h1> Welcome to Fire Feed </h1>
+
+
+</div><!-- / Container-->
+
+<ul>
+{% for i in infoz %}
+
+<li>
+	<h2>{{i.track.title}}</h2>
+	<h3>{{i.username}}</h3>
+
+	<div class="container gradient">
+
+	        <img class="cover" src="{{i.avatar_url}}" alt="">
+
+	        <div class="player gradient">
+
+	            <a class="button gradient" id="play" href="" title=""></a>
+	            <a class="button gradient" id="mute" href="" title=""></a>
+
+	                <input type="range" id="seek" value="0" max=""/>
+
+	            <a class="button gradient" id="close" href="" title=""></a>
+
+    </div><!-- / player -->
+
+</li>
+
+{% endfor %}
+
+
+
+</ul>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+
+
+</html>
