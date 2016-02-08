@@ -51,16 +51,6 @@ function DataService(){
 	};
 
 
-	//if first time being played? do that later.. inefficient 4 now.
-	this.setCurrentTrack = function(idtho){
-
-
-	};
-
-	this.getAudio = function(idtho){
-
-		return feedz_[idtho].state.audioObject;
-	}
 
 	this.getPlayState = function(){
 		return currentTrack['playingBool'];
@@ -69,10 +59,11 @@ function DataService(){
 	this.pauseCurrentTrack = function(idtho){
 		currentTrack['playingBool'] = false;
 		currentTrack['audio'].pause();
-		// feedz_[idtho].pause();
 	};
 
 	this.playCurrentTrack = function(idtho){
+
+		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SON.
 
 		if(idtho != currentTrack['index']){ // new song, do all this shit again.
 			if(currentTrack['index'] != -1){
@@ -238,9 +229,6 @@ app.controller('playCtrl', function(DataService){
 
 
 	self.playPause = function(idtho){
-
-
-
 		if(DataService.getPlayState())
 			DataService.pauseCurrentTrack(idtho);
 		else // if paused.. play

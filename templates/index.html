@@ -15,8 +15,8 @@
 			<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 		</h1>
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-		<button>Prev</button>
-		<button>Next</button>
+		<button ng-click='play_ctrl.hasPrev()'>Prev</button>
+		<button ng-click='play_ctrl.hasNext()'>Next</button>
 
 	</div> <!--HII-->
 
