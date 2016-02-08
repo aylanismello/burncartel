@@ -57,34 +57,71 @@ function DataService(){
 	};
 
 	this.pauseCurrentTrack = function(idtho){
+		console.log('pausing.');
 		currentTrack['playingBool'] = false;
 		currentTrack['audio'].pause();
 	};
 
-	this.playCurrentTrack = function(idtho){
-
-		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SON.
-
-		if(idtho != currentTrack['index']){ // new song, do all this shit again.
-			if(currentTrack['index'] != -1){
-				console.log('change song midway..');
-				currentTrack['audio'].pause();//stop old song.
-			}
-
+	this.playAndUpdateTrack = function(idtho){
+			console.log('play and update track..');
+			this.pauseCurrentTrack();
 
 			currentTrack['index'] = idtho;
 			currentTrack['title'] = feedz_[idtho].track.title;
-			console.log('i should play' + feedz_[idtho]['track']['title']);
-			currentTrack['audio'] = new Audio(feedz_[idtho]['track']['url']);
-			currentTrack['audio'].play();
-
-			currentTrack['playingBool'] = true;
-
-		}
-		else{
+			currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
 			currentTrack['audio'].play();
 			currentTrack['playingBool'] = true;
-		}
+
+	}
+
+	this.playCurrentTrack = function(idtho){
+
+		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SONG.
+
+
+		currentTrack['index'] = idtho;
+		currentTrack['title'] = feedz_[idtho].track.title;
+		currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
+		currentTrack['audio'].play();
+		currentTrack['playingBool'] = true;
+		//
+		//
+		// if(currentTrack['index'] == -1){ //first
+		// 	currentTrack['index'] = idtho;
+		// 	currentTrack['title'] = feedz_[idtho].track.title;
+		// 	currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
+		// 	currentTrack['audio'].play();
+		// 	currentTrack['playingBool'] = true;
+		// }
+		// else{ // not first
+		//
+		// }
+		//
+		// if(idtho != currentTrack['index']){ // new song OR first song
+		// 	if(currentTrack['index'] != -1){ // new song
+		// 		console.log('change song midway.., pausing ' + currentTrack['title']);
+		// 		currentTrack['audio'].pause();//stop old song.
+		// 	}
+		// 	else{ // first song
+		// 		console.log('first song!');
+		// 	}
+		//
+		// 	// else if first song, do everyhing
+		// 	currentTrack['index'] = idtho;
+		// 	currentTrack['title'] = feedz_[idtho].track.title;
+		// 	currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
+		// 	currentTrack['audio'].play();
+		//
+		//
+		// 	currentTrack['playingBool'] = true;
+		//
+		// }
+		// else{
+		// 	console.log('playing/pausing track from image.');
+		// 	currentTrack['audio'].play();
+		// 	currentTrack['playingBool'] = true;
+		// }
+		console.log('now playing ' + currentTrack['title']);
 
 	};
 
@@ -169,8 +206,6 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	self.prepWork = function(){
 		// for all shit in feeds do this:
 		for(var i = 0; i < $scope.feeds.length; i++){
-
-
 			self.feed["id"] = $scope.feeds[i].id;
 			self.feed["username"] = $scope.feeds[i].username;
 			self.feed["avatar_url"] = $scope.feeds[i].avatar_url;
@@ -180,16 +215,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 			self.feed["state"]["playBool"] = false;
 			self.feed["state"]["playText"] = 'unplayed.';
-			// self.feed["state"]["audioObject"] = new Audio(self.feed["track"]["url"]);
-
 			console.log("Adding " + self.feed['track']['url'] + " of audio of type " + self.feed['state']['audioObject']);
-			// self.feed["state"]["audioObject"].play();
-
-			// var toPush = JSON.parse(JSON.stringify(self.feed))
-			// $scope.feedz.push(toPush);
 			DataService.addFeed(self.feed);
-
-
 		}
 
 	}
@@ -199,19 +226,18 @@ app.controller('getCtrl', function($scope, $http, DataService){
 app.controller('playCtrl', function(DataService){
 	var self = this;
 
-	self.toggle = function(){
+	self.toggle = function(){ // for pausing/playing from BC play button
 		DataService.toggle();
 	};
 
-	self.getAnimateState = function(){
+	self.getAnimateState = function(){ // for turning BC logo movement on/off
 		if(DataService.getPlayState())
 			return "animated infinite pulse";
 		else
 			return ""
 	};
 
-	self.isPlaying = function(i){
-
+	self.isPlaying = function(i){ // to show on/off visuals on track art
 
 		if(DataService.getCurrentTrackID() == i)
 			return 'playing';
@@ -227,10 +253,24 @@ app.controller('playCtrl', function(DataService){
 
 
 	self.playPause = function(idtho){
-		if(DataService.getPlayState())
-			DataService.pauseCurrentTrack(idtho);
-		else // if paused.. play
-			DataService.playCurrentTrack(idtho);
 
-		};
+		if( (DataService.getPlayState() == false) && (idtho != DataService.getCurrentTrackID() ) ){
+			DataService.playCurrentTrack(idtho); // diff track, from pause state.
+			console.log('diff track from pause state');
+		}
+		else if( (DataService.getPlayState() == true) && (idtho != DataService.getCurrentTrackID() ) ){
+			DataService.playAndUpdateTrack(idtho); //diff track, from play state
+			console.log('diff track from play state');
+		}
+		else if(idtho == DataService.getCurrentTrackID()) // same track, played or paused..
+		{
+			console.log('just toggling');
+			self.toggle();
+
+		}
+		else{
+			console.log('WHAT???.');
+		}
+
+	};
 });
