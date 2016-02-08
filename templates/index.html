@@ -25,7 +25,7 @@
 
 	<div ng-show='get_ctrl.getLoadState()' class='center' data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 		<img class='paused' ng-click='play_ctrl.playPause($index)' src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-		<h2>{{f.username|angular}}'s listening to:</h2>
+		<h2 ng-bind='f.username'></h2>
 		<h3 ng-bind='f.track.title'></h3>
 		<!-- <button ng-click='play_ctrl.playPause($index)'>Play</button> -->
 	</br></br>
