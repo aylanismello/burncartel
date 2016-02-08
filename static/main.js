@@ -17,7 +17,17 @@ function DataService(){
 
 	this.toggle = function(){
 
-		if(currentTrack['playingBool']){
+
+		if(currentTrack['index'] == -1){ // just start this shit off...
+			console.log('playin first of all...');
+			currentTrack['index'] = 0;
+			currentTrack['title'] = feedz_[0].track.title;
+			currentTrack['playingBool'] = true;
+			currentTrack['audio'] = new Audio(feedz_[0].track.url);
+			currentTrack['audio'].play();
+
+		}
+		else if(currentTrack['playingBool']){
 			currentTrack['audio'].pause();
 
 			currentTrack['playingBool'] = false;
@@ -228,6 +238,8 @@ app.controller('playCtrl', function(DataService){
 
 
 	self.playPause = function(idtho){
+
+
 
 		if(DataService.getPlayState())
 			DataService.pauseCurrentTrack(idtho);
