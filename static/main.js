@@ -15,6 +15,23 @@ function DataService(){
 
 
 
+	this.toggle = function(){
+
+		if(currentTrack['playingBool']){
+			currentTrack['audio'].pause();
+
+			currentTrack['playingBool'] = false;
+
+		}
+		else{
+			currentTrack['audio'].play();
+			currentTrack['playingBool'] = true;
+		}
+
+
+	};
+
+
 	this.setLoadState = function(){
 		loadState = true;
 	};
@@ -180,6 +197,10 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 app.controller('playCtrl', function(DataService){
 	var self = this;
+
+	self.toggle = function(){
+		DataService.toggle();
+	};
 
 	self.getAnimateState = function(){
 		if(DataService.getPlayState())
