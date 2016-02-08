@@ -7,16 +7,16 @@
 <body>
 
 
-<div ng-controller='playCtrl as play_ctrl'>
+<div class='center' ng-controller='playCtrl as play_ctrl'>
 
-	<div class='center'> <!-- this is the top bar that never moves -->
+	<div > <!-- this is the top bar that never moves -->
 
 		<h1>
 			<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 		</h1>
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-		<button ng-click='play_ctrl.hasPrev()'>Prev</button>
-		<button ng-click='play_ctrl.hasNext()'>Next</button>
+		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
+		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 
 	</div> <!--HII-->
 

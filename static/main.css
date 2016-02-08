@@ -1,6 +1,21 @@
 body{
 	font-family: 'Raleway', sans-serif;
 }
+.playback{
+	border: none;
+	color: white;
+	padding: 8px 23px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+#prev{
+	background-color: #810022
+}
+#next{
+	background-color: #004781;
+}
 .play{
 	background-color: #961D1D;
 }
