@@ -212,10 +212,8 @@ app.controller('playCtrl', function(DataService){
 
 	self.isPlaying = function(i){
 
-		var c = DataService.getCurrentTrackID();
 
-
-		if(c == i)
+		if(DataService.getCurrentTrackID() == i)
 			return 'playing';
 		else
 			return 'paused';

@@ -13,6 +13,11 @@ app.config['DEBUG'] = True
 def index():
 	return render_template('index.html')
 
+
+@app.route('/hi')
+def hi():
+	return 'about that...'
+
 @app.route('/fire')
 def fire():
 	feed = get_feed()
