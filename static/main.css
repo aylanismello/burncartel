@@ -1,0 +1,31 @@
+body{
+	font-family: 'Raleway', sans-serif;
+}
+.play{
+	background-color: #961D1D;
+}
+.pause{
+	background-color: #34339E;
+}
+.center{
+	text-align: center;
+}
+#logo{
+	width: 300px;
+}
+h2, h3, h4{
+	visible: hidden;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+.paused{
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+}
+.playing{
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
+}
+#track-title{
+
+}
