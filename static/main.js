@@ -1,5 +1,8 @@
 var app = angular.module('myapp', []);
 
+// window.onkeydown = function(e) {
+// 		return !(e.keyCode == 32); //disable spacebar..
+// };
 
 function DataService(){
 	var feedz_ = [];
@@ -116,6 +119,9 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
 
 	// $scope joins controller with views
+	self.shout = function(){
+		alert("SHOUT!");
+	};
 
 	self.setLoadState = function(){
 		DataService.setLoadState();
@@ -188,6 +194,9 @@ app.controller('getCtrl', function($scope, $http, DataService){
 app.controller('playCtrl', function(DataService){
 	var self = this;
 
+	self.shout = function(){
+		alert('SHOUT');
+	};
 
 	self.hasNext = function(){
 
@@ -231,9 +240,14 @@ app.controller('playCtrl', function(DataService){
 		return DataService.getCurrentTrack();
 	};
 
+	self.ok = function() {
+		alert('ok!');
+	};
 
 
 	self.playPause = function(idtho){
+
+
 
 		console.log('playin ' + idtho);
 
