@@ -1,31 +1,3 @@
-/* Portrait */
-/*@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-		.header{
-			display: none;
-		}
-		.settings {
-			display: none;
-		}
-		.settings-mobile{
-
-		}
-		.playback{
-			display:none;
-		}
-		#id-track{
-			display:none;
-		}
-
-
-}*/
-
-
-
-
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button,
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
   box-shadow: none;
@@ -38,6 +10,7 @@
 .tooltipdemoBasicUsage .right {
   top: 70px !important;
   right: 56px !important; }
+
 
 
 body{
@@ -76,7 +49,8 @@ body{
 	padding-top:0px;
 	background-color: #EFEFEF;
 	position:fixed; bottom:0px;
-	padding-bottom: 1.5em;
+  margin-bottom:0px;
+	padding-bottom: 0em;
 		z-index:100000; width:100%;
 		box-shadow:5px 5px 20px #807E7E;
 }
@@ -101,6 +75,8 @@ body{
   bottom:0px;
 }
 .content{
+  border-radius: 15px 50px 30px 5px;
+   /*background-image: url("https://c1.staticflickr.com/3/2739/4259062038_9b865f0922_b.jpg");*/
 	width:auto;
 	margin:auto;
 	padding-top:12em;

@@ -40,8 +40,8 @@
 
 			<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
 			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-			<h2 id='username' ng-bind='f.username'></h2>
-			<h3 id="track-title" ng-bind='f.track.title'></h3>
+			<h2 class='track-info' id='username' ng-bind='f.username'></h2>
+			<h3 class='track-info' id="track-title" ng-bind='f.track.title'></h3>
 		</div>
 
 
@@ -90,6 +90,7 @@
 			<option value="south-american">South American</option>
 			<option value="hip-hop">Hip Hop</option>
 			<option value"electro">Electro</option>
+			<option value"trap">Trap</option>
 
 
 		</select>
@@ -100,7 +101,6 @@
 		<md-button id="help" class="md-raised md-primary playback"  ng-cloak>BURN
 			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
 		</md-button>
-
 
 
 </footer>
