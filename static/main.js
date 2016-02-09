@@ -1,4 +1,4 @@
-var app = angular.module('myapp', ['ngTouch']);
+var app = angular.module('myapp', ['ngMaterial']);
 
 function DataService(){
 	var feedz_ = [];
@@ -120,6 +120,15 @@ function DataService(){
 }
 
 app.service('DataService', [DataService]);
+
+
+app.controller('tooltipController', function($scope){
+	$scope.demo = {
+		 showTooltip : false,
+		 tooltipDirection : 'up'
+	};
+
+});
 
 app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;

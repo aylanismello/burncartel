@@ -18,6 +18,10 @@ def index():
 def hi():
 	return 'about that...'
 
+@app.route('/tip')
+def tip():
+	return render_template('tools.html')
+	
 @app.route('/fire')
 def fire():
 	feed = get_feed()

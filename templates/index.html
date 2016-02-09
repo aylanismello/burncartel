@@ -79,10 +79,18 @@
 </footer> -->
 
 
+
 <footer class='settings'>
 
-	<button id='help' class='playback'>?</button>
+	<md-button id="helpr" class="md-raised md-primary playback" ng-controller="tooltipController as ctrl" ng-cloak>?
+		 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}">space:play ,:prev .:next=</md-tooltip>
+	</md-button>
+
+
+
+
 	<div class='center inline'>
+
 		<select selected='future-beats' ng-model='genre'>
 			<option value="future-beats">Future Beats</option>
 			<option value="south-american">South American</option>
@@ -93,6 +101,7 @@
 		</select>
 
 		Basic <input min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
+
 
 
 
@@ -112,11 +121,21 @@
 
 </body>
 
+<link rel="stylesheet" href={{url_for('static', filename='bower_components/angular-material/angular-material.min.css')}}>
+
+ <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
-	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}"> </script>
+	<!-- <script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}"> </script> -->
 	<script src="{{url_for('static', filename='bower_components/angular-touch/angular-touch.min.js')}}"></script>
 	<script src="{{url_for('static', filename='main.js')}}"></script>
+
 
 
 </html>
