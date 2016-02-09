@@ -34,7 +34,12 @@
 
 <div class='content'>
 
-		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
+		<div ng-hide='get_ctrl.getLoadState()'>
+		<h2>LOADING FEED</h2>
+				<div layout="row" layout-sm="column" layout-align="space-around">
+		    <md-progress-circular md-mode="indeterminate" ng-controller='AppCtrl'></md-progress-circular>
+		  </div>
+		</div>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 
@@ -78,29 +83,35 @@
 
 <footer class='settings' ng-controller="Effects as fx">
 
-
+	<button id='help' class='playback'>?</button>
 
 
 		<!-- <md-button id="help" class="md-raised md-primary playback"  ng-cloak>?
 			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> HIT SPACE TO START </md-tooltip>
 		</md-button> -->
 
-		<select class='center' selected='future-beats' ng-model='genre'>
-			<option value="future-beats">Future Beats</option>
-			<option value="south-american">South American</option>
-			<option value="hip-hop">Hip Hop</option>
-			<option value"electro">Electro</option>
-			<option value"trap">Trap</option>
 
 
-		</select>
+		<div ng-controller="Genres">
+	  <form name="myForm">
+	    <select name="mySelect" id="mySelect"
+	      ng-options="option.name for option in data.availableOptions track by option.id"
+	      ng-model="data.selectedOption"></select>
+	  </form>
+		<md-button class="md-raised md-primary playback"  ng-click="get_ctrl.getFeedTho({{data.selectedOption|angular}})" ng-cloak> BURN
+			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
+		</md-button>
+
+	  <hr>
+	  <tt>option = {{data.selectedOption|angular}}</tt><br/>
+	</div>
+
+
+
 
 		Basic <input class='center' min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
 
 
-		<md-button id="help" class="md-raised md-primary playback"  ng-cloak>BURN
-			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
-		</md-button>
 
 
 </footer>

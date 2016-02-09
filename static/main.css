@@ -12,6 +12,39 @@
   right: 56px !important; }
 
 
+#genre-input{
+  text-align: inline;
+}
+
+
+.progressCirculardemoBasicUsage body {
+  padding: 20px; }
+.progressCirculardemoBasicUsage h4 {
+  margin: 10px 0; }
+.progressCirculardemoBasicUsage md-progress-circular {
+  margin-bottom: 20px; }
+.progressCirculardemoBasicUsage #loaders > md-switch {
+  margin: 0;
+  margin-left: 10px;
+  margin-top: -10px; }
+.progressCirculardemoBasicUsage #loaders > h5 {
+  margin-top: 0; }
+.progressCirculardemoBasicUsage #loaders > p {
+  margin-right: 20px;
+  margin-bottom: 24px; }
+.progressCirculardemoBasicUsage p.small {
+  font-size: 0.8em;
+  margin-top: -18px; }
+.progressCirculardemoBasicUsage hr {
+  width: 100%;
+  margin-top: 20px;
+  border-color: rgba(221, 221, 177, 0.1); }
+.progressCirculardemoBasicUsage p.small > code {
+  font-size: 0.8em; }
+.progressCirculardemoBasicUsage .visible {
+  border-color: rgba(221, 221, 177, 0); }
+
+  
 
 body{
 	margin:0px;
@@ -70,9 +103,10 @@ body{
 	width: 1.5em;
 }
 #help{
-	right:0px;
-  padding-bottom:0px;
-  bottom:0px;
+  width:2.5em;
+  height:2.5em;
+	border-radius:50px;
+  padding:0px 0px;
 }
 .content{
   border-radius: 15px 50px 30px 5px;

@@ -1,0 +1,8 @@
+Thanks for trying out FireFeed.
+
+Keyboard shortcuts:
+[Space]: Play/Pause
+[.]: Next Song
+[,]: Previous Song
+
+All music sources from sound cloud. All taste algorithms from Burn Cartel LLC.

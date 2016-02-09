@@ -8,6 +8,9 @@ app = Flask(__name__)
 Triangle(app)
 app.config['DEBUG'] = True
 
+def __init__(self):
+	print "in this bitch!"
+
 
 @app.route('/')
 def index():
@@ -18,12 +21,21 @@ def index():
 def hi():
 	return 'about that...'
 
-
-@app.route('/getfeed', methods=['GET'])
-def get_feed():
+@app.route('/getfeed/<int:genre_id>', methods=['GET'])
+def get_feed(genre_id):
+	print genre_id
 	infoz = SC().get()
 	print "got: \n\n\t %s" % infoz
 	return jsonify({'myjson': infoz})
+
+
+@app.route('/getfeed/', methods=['GET'])
+def get_feed2():
+	infoz = SC().get()
+	print "got: \n\n\t %s" % infoz
+	return jsonify({'myjson': infoz})
+
+
 
 @app.errorhandler(404)
 def not_found(error):

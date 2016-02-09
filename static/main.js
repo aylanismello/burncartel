@@ -122,6 +122,51 @@ function DataService(){
 app.service('DataService', [DataService]);
 
 
+
+app.controller('Genres', ['$scope', function($scope) {
+
+	$scope.doThis = function(){
+		console.log("WASSUP");
+	};
+
+	$scope.data = {
+	 availableOptions: [
+		 {id: '0', name: 'Future Beats'},
+		 {id: '1', name: 'Electro'},
+		 {id: '2', name: 'Trap'}
+	 ],
+	 selectedOption: {id: '0', name: 'Future Beats'} //This sets the default value of the select in the ui
+	 };
+}]);
+
+app.controller('AppCtrl', function($scope, $interval){
+      var self = this,  j= 0, counter = 0;
+      self.modes = [ ];
+      self.activated = true;
+      self.determinateValue = 30;
+      /**
+       * Turn off or on the 5 themed loaders
+       */
+      self.toggleActivation = function() {
+          if ( !self.activated ) self.modes = [ ];
+          if (  self.activated ) j = counter = 0;
+      };
+      // Iterate every 100ms, non-stop
+      $interval(function() {
+        // Increment the Determinate loader
+        self.determinateValue += 1;
+        if (self.determinateValue > 100) {
+          self.determinateValue = 30;
+        }
+        // Incrementally start animation the five (5) Indeterminate,
+        // themed progress circular bars
+        if ( (j < 5) && !self.modes[j] && self.activated ) {
+          self.modes[j] = 'indeterminate';
+        }
+        if ( counter++ % 4 == 0 ) j++;
+      }, 100, 0, true);
+    });
+
 app.controller('Effects', function($scope){
 
 	this.userState = '';
@@ -134,13 +179,7 @@ app.controller('Effects', function($scope){
 
 });
 
-app.controller('Yo', function(){
 
-	this.userState = '';
-			 this.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-					 'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-					 'WY').split(' ').map(function (state) { return { abbrev: state }; });
-});
 
 app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
@@ -195,6 +234,9 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		return DataService.getFeed();
 	}
 
+	self.getFeedTho = function(i){
+		console.log('just received ' + i);
+	};
 
 	$http.get("/getfeed").
 	then(function(response){
