@@ -43,14 +43,18 @@
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 
-			<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-			<h2 class='track-info' id='username' ng-bind='f.username'></h2>
-			<h3 class='track-info' id="track-title" ng-bind='f.track.title'></h3>
-		</div>
+				<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
+				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+				<h2 class='track-info' id='username' ng-bind='f.username'></h2>
+				<h3 class='track-info' id="track-title" ng-bind='f.track.title'></h3>
+			</div>
 
 
 		<button id='more' ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
+
+
+
+
 
 
 </div>
@@ -103,13 +107,16 @@
 		</md-button>
 
 	  <hr>
-	  <tt>option = {{data.selectedOption|angular}}</tt><br/>
+	  <!-- <tt>option = {{data.selectedOption|angular}}</tt><br/> -->
 	</div>
 
 
 
 
-		Basic <input class='center' min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
+Basic <md-slider flex md-discrete ng-model="rating1" class='center' step="1" min="1" max="5" aria-label="rating">
+	</md-slider> Eclectic
+	<hr>
+	<!-- <tt>slide = {{rating1|angular}}</tt> -->
 
 
 

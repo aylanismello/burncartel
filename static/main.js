@@ -165,6 +165,19 @@ app.controller('AppCtrl', function($scope, $interval){
         }
         if ( counter++ % 4 == 0 ) j++;
       }, 100, 0, true);
+
+
+			$scope.color = {
+			    red: Math.floor(Math.random() * 255),
+			    green: Math.floor(Math.random() * 255),
+			    blue: Math.floor(Math.random() * 255)
+			  };
+			  $scope.rating1 = 0;
+			  $scope.rating2 = 1;
+			  $scope.rating3 = 2;
+			  $scope.disabled1 = 3;
+			  $scope.disabled2 = 4;
+
     });
 
 app.controller('Effects', function($scope){
