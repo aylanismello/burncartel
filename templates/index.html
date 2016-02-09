@@ -5,6 +5,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,500' rel='stylesheet' type='text/css'>
 	<link href="{{url_for('static', filename='main.css')}}" rel='stylesheet' type='text/css'>
 
+
+
 </head>
 <body ng-controller="playCtrl as play_ctrl" ng-keypress="play_ctrl.key($event)" >
 <!-- space:32, enter:13, right:39, left: 40 ($event.charCode==13)?play_ctrl.toggle():return-->
@@ -20,7 +22,7 @@
 	 <div class='header' >
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
-		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
+		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 	</div>
@@ -36,18 +38,18 @@
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 
-			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
+			<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
 			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-			<h2 ng-bind='f.username'></h2>
+			<h2 id='username' ng-bind='f.username'></h2>
 			<h3 id="track-title" ng-bind='f.track.title'></h3>
 		</div>
-		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 
+
+		<button id='more' ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 
 
 </div>
 
-</div>
 
 <!-- <div class='content-mobile'>
 
@@ -64,12 +66,6 @@
 </div> -->
 
 
-
-
-
-
-
-
 <!-- <footer class='center settings-mobile'>
 
 	<span> <button>GENRES</button> <button>CURRENT TRACK</button> <button>PLAYLIST</button> </span>
@@ -80,18 +76,16 @@
 
 
 
-<footer class='settings'>
-
-	<md-button id="helpr" class="md-raised md-primary playback" ng-controller="tooltipController as ctrl" ng-cloak>?
-		 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}">space:play ,:prev .:next=</md-tooltip>
-	</md-button>
+<footer class='settings' ng-controller="Effects as fx">
 
 
 
 
-	<div class='center inline'>
+		<!-- <md-button id="help" class="md-raised md-primary playback"  ng-cloak>?
+			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> HIT SPACE TO START </md-tooltip>
+		</md-button> -->
 
-		<select selected='future-beats' ng-model='genre'>
+		<select class='center' selected='future-beats' ng-model='genre'>
 			<option value="future-beats">Future Beats</option>
 			<option value="south-american">South American</option>
 			<option value="hip-hop">Hip Hop</option>
@@ -100,18 +94,19 @@
 
 		</select>
 
-		Basic <input min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
+		Basic <input class='center' min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
 
 
+		<md-button id="help" class="md-raised md-primary playback"  ng-cloak>BURN
+			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
+		</md-button>
 
 
-		<img ng-click='get_ctrl.getNewBurn()' id='burn' src={{url_for('static', filename='flame.svg')}}/>
-
-	</div>
 
 </footer>
 
 
+</div>
 
 
 <!-- <footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.

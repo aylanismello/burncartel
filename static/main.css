@@ -24,6 +24,8 @@
 }*/
 
 
+
+
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button,
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
   box-shadow: none;
@@ -88,20 +90,21 @@ body{
 		box-shadow:5px 5px 20px #807E7E;
 	/*display:inline;*/
 }
-#track-title{
-	padding-bottom: 0em;
-}
+
 #burn{
 	background-color: #810022;
 	width: 1.5em;
 }
 #help{
-	left:0px;
+	right:0px;
+  padding-bottom:0px;
+  bottom:0px;
 }
 .content{
 	width:auto;
 	margin:auto;
-	padding-top:14em;
+	padding-top:12em;
+  padding-bottom:5em;
 	/*height:1000px;*/
 
 }
@@ -109,8 +112,9 @@ body{
 	text-align:left;
 }
 footer{
-	padding-top: 1.7em;
-	padding-bottom: 0.6em;
+	padding-top: 0.5em;
+	padding-bottom: 0;
+  bottom:0px;
 }
 
 #prev{
@@ -140,9 +144,16 @@ footer{
 	width: 20em;
 }
 
-h1, h2, h3, h4{
-	padding-bottom: 0px;
-	padding-top: 0px;
+
+#username{
+  margin-bottom: 0px;
+}
+#track-title{
+  margin-top: 0px;
+
+}
+#album-art{
+  margin-top:1.5em;
 }
 .paused{
 	-webkit-filter: grayscale(1);
