@@ -6,21 +6,21 @@
 	<link href="{{url_for('static', filename='main.css')}}" rel='stylesheet' type='text/css'>
 
 </head>
-<body ng-controller="playCtrl as play_ctrl" ng-keypress="play_ctrl.key($event)" ng-swipe-left='play_ctrl.hasPrev()'
-	ng-swipe-right='play_ctrl.hasNext()'>
+<body ng-controller="playCtrl as play_ctrl" ng-keypress="play_ctrl.key($event)" >
 <!-- space:32, enter:13, right:39, left: 40 ($event.charCode==13)?play_ctrl.toggle():return-->
 
-<div class='center'>
+<div id="super-container" class='center'>
 
 	<div class='header-mobile' > <!-- this is the top bar that never moves -->
 
 
-		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
-		ng-swipe-left='play_ctrl.hasPrev()' ng-swipe-right='play_ctrl.hasNext()'>
+		<img ng-click='play_ctrl.toggle()' id='logo-mobile' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
+		ng-swipe-left='play_ctrl.hasNext()' ng-swipe-right='play_ctrl.hasPrev()'>
 
 
 
 	</div> <!--HII-->
+
 
 	 <!-- <div class='header' >
 
@@ -42,33 +42,36 @@
 
 	</br></br>
 
-<div class='content'>
+
+<!-- <div class='content'>
 
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
 
 			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' ng-swipe-left='play_ctrl.hasPrev()'
-				ng-swipe-right='play_ctrl.hasNext()'>
+			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
 			<h2 ng-bind='f.username'></h2>
 			<h3 id="track-title" ng-bind='f.track.title'></h3>
 		</div>
 		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 	</div>
 
+</div> -->
+
+<div class='content-mobile'>
+
+	<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
+	<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
+
+		<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
+		src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+		<h2 ng-bind='f.username'></h2>
+		<h3 id="track-title" ng-bind='f.track.title'></h3>
+	</div>
+	<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
+
 </div>
 
-<!-- <div class='content-mobile'>
-
-		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
-		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
-
-			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' >
-			<h2 ng-bind='f.username'></h2>
-			<h3 id="track-title" ng-bind='f.track.title'></h3>
-		</div>
-		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 </div> -->
 
 </div>
