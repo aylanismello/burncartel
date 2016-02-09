@@ -11,42 +11,30 @@
 
 <div id="super-container" class='center'>
 
-	<div class='header-mobile' > <!-- this is the top bar that never moves -->
-
-
+	<!-- <div class='header-mobile' >
 		<img ng-click='play_ctrl.toggle()' id='logo-mobile' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
 		ng-swipe-left='play_ctrl.hasNext()' ng-swipe-right='play_ctrl.hasPrev()'>
+	</div>  -->
 
 
-
-	</div> <!--HII-->
-
-
-	 <!-- <div class='header' >
-
+	 <div class='header' >
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
-
 		<h3 id="track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
-
-	</div> -->
-
-
-
-
+	</div>
 
 
 
 	</br></br>
 
 
-<!-- <div class='content'>
+<div class='content'>
 
 		<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
+
 
 			<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
 			src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
@@ -54,11 +42,14 @@
 			<h3 id="track-title" ng-bind='f.track.title'></h3>
 		</div>
 		<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
-	</div>
 
-</div> -->
 
-<div class='content-mobile'>
+
+</div>
+
+</div>
+
+<!-- <div class='content-mobile'>
 
 	<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
 	<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
@@ -70,29 +61,28 @@
 	</div>
 	<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
 
-</div>
-
 </div> -->
 
-</div>
 
 
 
 
 
 
-<footer class='center settings-mobile'>
+
+<!-- <footer class='center settings-mobile'>
 
 	<span> <button>GENRES</button> <button>CURRENT TRACK</button> <button>PLAYLIST</button> </span>
 
 
 
-</footer>
+</footer> -->
 
 
-<!-- <footer class='center settings'>
+<footer class='settings'>
 
-
+	<button id='help' class='playback'>?</button>
+	<div class='center inline'>
 		<select selected='future-beats' ng-model='genre'>
 			<option value="future-beats">Future Beats</option>
 			<option value="south-american">South American</option>
@@ -104,11 +94,13 @@
 
 		Basic <input min="0" max="5" type='range' value='5' name='eclectic' ng-model='eclectic'/>Eclectic
 
+
+
 		<img ng-click='get_ctrl.getNewBurn()' id='burn' src={{url_for('static', filename='flame.svg')}}/>
 
+	</div>
 
-
-</footer> -->
+</footer>
 
 
 
@@ -122,8 +114,7 @@
 
 
 
-	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}">
-	</script>
+	<script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}"> </script>
 	<script src="{{url_for('static', filename='bower_components/angular-touch/angular-touch.min.js')}}"></script>
 	<script src="{{url_for('static', filename='main.js')}}"></script>
 

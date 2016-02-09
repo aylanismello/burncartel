@@ -209,6 +209,9 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 });
 
+
+
+
 app.controller('playCtrl', function(DataService){
 	var self = this;
 

@@ -21,15 +21,22 @@
 		}
 
 
-
-
 }*/
 
-/*@media (max-width: 640px) {  when max-width is less than this...
 
+.tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button,
+.tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
+  box-shadow: none;
+  border: none;
+  transform: none;
+  -webkit-transform: none; }
+.tooltipdemoBasicUsage .left {
+  top: 70px !important;
+  left: 56px !important; }
+.tooltipdemoBasicUsage .right {
+  top: 70px !important;
+  right: 56px !important; }
 
-
-}*/
 
 body{
 	margin:0px;
@@ -64,7 +71,6 @@ body{
 	/*display:inline;*/
 }
 .settings{
-	display: none;
 	padding-top:0px;
 	background-color: #EFEFEF;
 	position:fixed; bottom:0px;
@@ -88,6 +94,9 @@ body{
 #burn{
 	background-color: #810022;
 	width: 1.5em;
+}
+#help{
+	left:0px;
 }
 .content{
 	width:auto;
@@ -118,6 +127,10 @@ footer{
 }
 .center{
 	text-align: center;
+}
+.inline{
+	display: inline;
+	text-align:center;
 }
 #logo{
 	padding-top: 0px;
