@@ -13,21 +13,37 @@
 
 <div id="super-container" class='center'>
 
+
+	<div class='header' >
+
+		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
+		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
+		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
+
+		<div ng-controller="AppCtrl"  id="popupContainer" style='display: inline'>
+				<md-button class="md-primary md-raised" ng-click="showAlert($event)" flex="100" flex-gt-md="auto">
+					?
+				</md-button>
+		</div>
+
+		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
+
+
+
+	</div>
+
+
+
+
+
+
+
 	<!-- <div class='header-mobile' >
 		<img ng-click='play_ctrl.toggle()' id='logo-mobile' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
 		ng-swipe-left='play_ctrl.hasNext()' ng-swipe-right='play_ctrl.hasPrev()'>
 	</div>  -->
 
 
-	 <div class='header' >
-
-		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
-		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
-
-		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
-			<button style="display:inline;" id='help' class='playback'>?</button>
-		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
-	</div>
 
 
 
@@ -46,7 +62,7 @@
 
 
 				<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' ng-show='get_ctrl.getLoadState()'>
 				<h2 class='track-info' id='username' ng-bind='f.username'></h2>
 				<h3 class='track-info' id="track-title" ng-bind='f.track.title'></h3>
 			</div>
@@ -132,8 +148,8 @@
 
 <!-- </footer> -->
 
-<footer class='settings' style='display:left;'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
-	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
+<footer class='settings' style='padding: 1em 0em; display:left;'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+	Taste and programming by <a href='{{url_for('about')}}'>Burn Cartel</a>. </footer>
 
 </div>
 

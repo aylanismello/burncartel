@@ -1,11 +1,37 @@
 {
 	"artists": [
-
-		{"username": "souletiquette"},
-		{"username": "movingcastle"},
+		{"username": "xlr8r"},
+		{"username": "cosmonostro"},
+		{"username": "astronautica"},
+		{"username": "jakarta-records"},
+		{"username": "ghostly"},
+		{"username": "wearealaya"},
+		{"username": "dohits"},
+		{"username": "maddecent"},
+		{"username": "soulection"},
 		{"username": "pigeonsandplanes"},
 		{"username": "teamsupreme"},
-		{"username": "alphapup"}
+		{"username": "alphapup"},
+		{"username": "owsla"},
+		{"username": "nesthq"},
+		{"username": "hegemon"},
+		{"username": "foreignfamily"},
+		{"username": "brainfeeder"},
+		{"username": "huhwhatandwhere"},
+		{"username": "future"},
+		{"username": "souletiquette"},
+		{"username": "baewave"},
+		{"username": "movingcastle"},
+		{"username": "noisey"},
+		{"username": "warp-records"},
+		{"username": "c2cdjs"},
+		{"username": "zzkrecords"},
+		{"username": "thumpmx"},
+		{"username": "frentebolivarista"},
+		{"username": "sonidotropico"},
+		{"username": "wonderwheel"}
+
+
 	],
 
 	"soundcloud_client": {

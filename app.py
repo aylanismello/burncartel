@@ -17,9 +17,9 @@ def index():
 	return render_template('index.html')
 
 
-@app.route('/hi')
-def hi():
-	return 'about that...'
+@app.route('/about')
+def about():
+	return 'here is all about us!!'
 
 @app.route('/getfeed/<int:genre_id>', methods=['GET'])
 def get_feed(genre_id):

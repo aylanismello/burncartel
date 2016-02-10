@@ -35,8 +35,14 @@ class SC(object):
 
 
 		print "\n\n called!!! \n\n"
-		for artist in self.data['artists']:
+		numArtistsPerQuery = 6
+
+		for artistIndex in range(numArtistsPerQuery):
 			# get artist access
+
+			artistNum = random.randint(0, ( len(self.data['artists']) - 1) )
+			artist = self.data['artists'][artistNum]
+
 			u = client.get('/users', q=artist['username'])
 			#set artist attributes, id, username, avatar_url
 			self.artistInfo['ID'] = u[0].id
