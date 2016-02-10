@@ -9,6 +9,10 @@
 to the track_art (tried to fix.., check results)
 [] 4. If track reaches end, then we can't move the next one without manually starting+stopping it.
 
+UNICODE ERROR:
+2016-02-10T21:43:29.424729+00:00 app[web.1]:     print "artist %s has %d tracks " % (self.artistInfo['username'], trackCount)
+2016-02-10T21:43:29.424730+00:00 app[web.1]: UnicodeEncodeError: 'ascii' codec can't encode character u'\xf3' in position 16: ordinal not in range(128)
+
 ERROR 500
 File "/Users/aylanmello/sites/burncartel.com/sc.py", line 94, in get
    stream_url = client.get(track.stream_url, allow_redirects=False)
