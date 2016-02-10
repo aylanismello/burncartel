@@ -1,7 +1,8 @@
 [] 1. Help turns and remains blue after clicking on it.
 [] 2. Queries sometimes fail because of index out of range python errors.
   problem: retrieved track list of 0 for certain artist.
-    PROBLEM CHANNELS: hillydilly, majesticcausual (maybe they have streaming blocks? error check for this)
+    PROBLEM CHANNELS: hillydilly, majesticcausual
+    (maybe they have streaming blocks? error check for this)
                        topdawgent
 
 [] 3. if track has no url, default to another 100x100px source... to fix this just add it by default to

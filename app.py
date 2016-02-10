@@ -6,7 +6,7 @@ from sc import SC
 
 app = Flask(__name__)
 Triangle(app)
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 app.config['PROPOGATE_EXCEPTIONS'] = True
 
 def __init__(self):
