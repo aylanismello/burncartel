@@ -347,7 +347,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		console.log('just received ' + i);
 	};
 
-	$http.get("/getfeedss").
+	$http.get("/getfeed").
 	then(function(response){
 		console.log("HELLOO. CALLING SERVER \n\n");
 		var r = response.data.myjson;
