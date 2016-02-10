@@ -58,7 +58,10 @@ class SC(object):
 			self.artistInfo['username'] = u[0].username
 			self.artistInfo['avatar_url'] = u[0].avatar_url
 			# get latest track list by user id
-			t = client.get('/users/'+ str(u[0].id)+ '/tracks')
+
+			# what if we want favorites?
+			t = client.get('/users/'+ str(u[0].id)+ '/favorites')
+			# t = client.get('/users/'+ str(u[0].id)+ '/tracks')
 			#get id of latest track, etc, etc
 
 			trackCount = len(t)
