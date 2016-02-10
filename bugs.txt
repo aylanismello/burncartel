@@ -8,6 +8,16 @@
 to the track_art (tried to fix.., check results)
 [] 4. If track reaches end, then we can't move the next one without manually starting+stopping it.
 
+ERROR 500
+File "/Users/aylanmello/sites/burncartel.com/sc.py", line 94, in get
+   stream_url = client.get(track.stream_url, allow_redirects=False)
+ File "/Users/aylanmello/sites/burncartel.com/soundcloud/client.py", line 133, in _request
+   return wrapped_resource(make_request(method, url, kwargs))
+ File "/Users/aylanmello/sites/burncartel.com/soundcloud/request.py", line 148, in make_request
+   result.raise_for_status()
+ File "/Library/Python/2.7/site-packages/requests/models.py", line 837, in raise_for_status
+   raise HTTPError(http_error_msg, response=self)
+HTTPError: 500 Server Error: Internal Server Error for url: https://api.soundcloud.com/tracks/177861874/stream?client_id=282558e0e8cdcd8a9b3ba2b4917596b7
 
 THIS IS A FUCKING PROBLEM
 getting track url of track id: 200925531
