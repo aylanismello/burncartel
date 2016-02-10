@@ -1,10 +1,76 @@
 [] 1. Help turns and remains blue after clicking on it.
 [] 2. Queries sometimes fail because of index out of range python errors.
+  problem: retrieved track list of 0 for certain artist.
+    PROBLEM CHANNELS: hillydilly, majesticcausual (maybe they have streaming blocks? error check for this)
+                      TOPDAWGENT
+
 [] 3. if track has no url, default to another 100x100px source... to fix this just add it by default to
 to the track_art (tried to fix.., check results)
 [] 4. If track reaches end, then we can't move the next one without manually starting+stopping it.
 
 
+THIS IS A FUCKING PROBLEM
+getting track url of track id: 200925531
+return self.view_functions[rule.endpoint](**req.view_args)
+File "/Users/aylanmello/sites/burncartel.com/app.py", line 37, in get_feed2
+  infoz = SC().get()
+File "/Users/aylanmello/sites/burncartel.com/sc.py", line 80, in get
+  stream_url = client.get(track.stream_url, allow_redirects=False)
+File "/Users/aylanmello/sites/burncartel.com/soundcloud/resource.py", line 34, in __getattr__
+  raise AttributeError
+AttributeError
+
+THIS IS APROBLEM 2:
+  HTTPError: 500 Server Error: Internal Server Error for url: https://api.soundcloud.com/users/123634482/tracks?client_id=282558e0e8cdcd8a9b3ba2b4917596b7
+
+
+
+
 
 this causes an error
  appending {'username': u'Astronautica', 'track': {'url': u'https://cf-media.sndcdn.com/sdHNO8VZgOd0.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vc2RITk84VlpnT2QwLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE0NTUwNzA4MzR9fX1dfQ__&Signature=N6yPLiQpL8eW6JIGTgKE3fVidYoiJIMQc6xvemlzZDbFtzMw0AcvbSnP8E8FmwJnARSRkIK-uzeJTmZdsn5awAxnXbYID340FHFmrCfznBNV58RdX3tEvZXhl6zZKCd~FxLZjW~x~TptIqufPRSwFaocvzoyF28zHhVnETKfdugs2A9EwPje46bc07ZM8Dx7YPIIBIP6uifuzg8I7MESnIMSoEEOCAIv9T4xS073qoS60xN5RHOw2ybLelWm~OBuVQYasBjWTpP2gmhrJNTUKU~u~4RsP~I~-z-nmnKILWEojioyLHs3HdEtiUgacMXbdsskS~lA3FbteDwmy6tAwQ__&Key-Pair-Id=APKAJAGZ7VMH2PFPW6UQ', 'artwork_url': u'https://i1.sndcdn.com/artworks-000144699627-ljkp4l-large.jpg', 'ID': 243930772, 'title': u'*69'}, 'avatar_url': u'https://i1.sndcdn.com/avatars-000203157844-30n98i-large.jpg', 'ID': 3084445}
+
+
+ another interesting one:
+
+ 016-02-10T15:42:27.901439+00:00 app[web.1]:  appending {'track': {'title': u'El B\xfaho - Schuvia', 'ID': 140002277, 'url': u'https://ec-media.sndcdn.com/RoNggcD7ea5g.128.mp3?f10880d39085a94a0418a7ef69b03d522cd6dfee9399eeb9a52204996ef9b73f05eb9de312513e6978532c0b0d4fac5ac99b43403c5a989b4906faf9a4053a5f3723a44661', 'artwork_url': u'https://i1.sndcdn.com/artworks-000073866378-f4gog1-large.jpg'}, 'ID': 77684597, 'avatar_url': u'https://i1.sndcdn.com/avatars-000068243793-i61s35-large.jpg', 'username': u'QTZLCTL'}
+ 2016-02-10T15:42:28.793775+00:00 app[web.1]:
+ 2016-02-10T15:42:28.793779+00:00 app[web.1]:
+ 2016-02-10T15:42:28.793783+00:00 app[web.1]:  appending {'track': {'title': u'Shy Girls - Still Not Falling (Dutty Wilderness Remix)', 'ID': 122348596, 'url': u'https://cf-media.sndcdn.com/GskXA4vg3vy4.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vR3NrWEE0dmczdnk0LjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE0NTUxMTkzMjh9fX1dfQ__&Signature=EbNHOGyDLnVp0q7-dYgAWOMZ9N0HjxD4uwQbRht8tJja2OYc2qvd7gp6LlqvN06tge~euiQBbt8pLxytex31fpSvfUr9at3pDK674qOCFJXhzN0fWM-owja~BbdJDjuQYD3G-kMVXuQfhgUs2JqFmB8z9zu3pXTUHii52RxOnJFEsGSRVO1l318ySez83VaRknLlLG5bGkAtZ6q1E40LU1D9ZcO1zslmSx0lG3TtYtvimbK-B94YiwOD9Hq42atBWq244loB10VF-44VejpwbPFE3q~p5vZNvC9rAUw7wL56OnCNMq9LNwT51scWOgGsSPbcXIFgk9wPfCFJI6lqag__&Key-Pair-Id=APKAJAGZ7VMH2PFPW6UQ', 'artwork_url': u'https://i1.sndcdn.com/artworks-000063961299-husp65-large.jpg'}, 'ID': 355865, 'avatar_url': u'https://i1.sndcdn.com/avatars-000195052293-ddmi5x-large.jpg', 'username': u'Yours Truly'}
+ 2016-02-10T15:42:29.227359+00:00 heroku[router]: at=info method=GET path="/getfeed/" host=www.burncartel.com request_id=dbdc3856-0896-499a-a708-6af07024631f fwd="98.255.1.62" dyno=web.1 connect=0ms service=3964ms status=500 bytes=244
+ 2016-02-10T15:42:29.206675+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 130, in handle
+ 2016-02-10T15:42:29.206676+00:00 app[web.1]:     self.handle_request(listener, req, client, addr)
+ 2016-02-10T15:42:29.206669+00:00 app[web.1]: [2016-02-10 15:42:29 +0000] [9] [ERROR] Error handling request /getfeed/
+ 2016-02-10T15:42:29.206673+00:00 app[web.1]: Traceback (most recent call last):
+ 2016-02-10T15:42:29.206676+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 171, in handle_request
+ 2016-02-10T15:42:29.206678+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+ 2016-02-10T15:42:29.206677+00:00 app[web.1]:     respiter = self.wsgi(environ, resp.start_response)
+ 2016-02-10T15:42:29.206679+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1820, in wsgi_app
+ 2016-02-10T15:42:29.206681+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+ 2016-02-10T15:42:29.206682+00:00 app[web.1]:     response = self.full_dispatch_request()
+ 2016-02-10T15:42:29.206684+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+ 2016-02-10T15:42:29.206678+00:00 app[web.1]:     return self.wsgi_app(environ, start_response)
+ 2016-02-10T15:42:29.206680+00:00 app[web.1]:     response = self.make_response(self.handle_exception(e))
+ 2016-02-10T15:42:29.206691+00:00 app[web.1]:   File "/app/soundcloud/client.py", line 133, in _request
+ 2016-02-10T15:42:29.206683+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+ 2016-02-10T15:42:29.206686+00:00 app[web.1]:     rv = self.dispatch_request()
+ 2016-02-10T15:42:29.206685+00:00 app[web.1]:     reraise(exc_type, exc_value, tb)
+ 2016-02-10T15:42:29.206681+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1403, in handle_exception
+ 2016-02-10T15:42:29.206682+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+ 2016-02-10T15:42:29.206686+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+ 2016-02-10T15:42:29.206692+00:00 app[web.1]:     return wrapped_resource(make_request(method, url, kwargs))
+ 2016-02-10T15:42:29.206684+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+ 2016-02-10T15:42:29.206688+00:00 app[web.1]:     return self.view_functions[rule.endpoint](**req.view_args)
+ 2016-02-10T15:42:29.206690+00:00 app[web.1]:   File "/app/sc.py", line 65, in get
+ 2016-02-10T15:42:29.206687+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+ 2016-02-10T15:42:29.206701+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/requests/models.py", line 840, in raise_for_status
+ 2016-02-10T15:42:29.206701+00:00 app[web.1]:     raise HTTPError(http_error_msg, response=self)
+ 2016-02-10T15:42:29.206688+00:00 app[web.1]:   File "/app/app.py", line 34, in get_feed2
+ 2016-02-10T15:42:29.206689+00:00 app[web.1]:     infoz = SC().get()
+ 2016-02-10T15:42:29.206691+00:00 app[web.1]:     stream_url = client.get(track.stream_url, allow_redirects=False)
+ 2016-02-10T15:42:29.206699+00:00 app[web.1]:   File "/app/soundcloud/request.py", line 148, in make_request
+ 2016-02-10T15:42:29.206702+00:00 app[web.1]: HTTPError: 500 Server Error: Internal Server Error for url: https://api.soundcloud.com/tracks/149733149/stream?client_id=282558e0e8cdcd8a9b3ba2b4917596b7
+ 2016-02-10T15:42:29.206700+00:00 app[web.1]:     result.raise_for_status()
+ 2016-02-10T15:42:48.439026+00:00 heroku[router]: at=info method=GET path="/" host=www.burncartel.com request_id=03c87349-e694-4bde-93ec-a32c65a4125e fwd="98.255.1.62" dyno=web.1 connect=11ms service=15ms status=200 bytes=5477
+ 2016-02-10T15:42:48.950174+00:00 heroku[router]: at=info method=GET path="/" host=www.burncartel.com request_id=63572b39-6df8-4ee3-bf63-01817db7d7ac fwd="98.255.1.62" dyno=web.1 connect=0ms service=14ms status=200 bytes=5477
+ 2016-02-10T15:42:49.460827+00:00 heroku[router]: at=info method=GET path="/%7B%7Bf.track.artwork_url%7D%7D" host=www.burncartel.com request_id=3566f0ac-a83d-45d7-b7b5-fc3373b1ac79 fwd="98.255.1.62" dyno=web.1 connect=0ms service=1ms status=404 bytes=185

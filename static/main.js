@@ -349,12 +349,12 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 	$http.get("/getfeed").
 	then(function(response){
-		console.log("HELLOO");
+		console.log("HELLOO. CALLING SERVER \n\n");
 		var r = response.data.myjson;
 		console.log('my feeds start with user ' + r[0].username)
 		$scope.feeds = r;
 		self.prepWork();
-		console.log('set that state tho');
+		// console.log('set that state tho');
 		DataService.setLoadState();
 	});
 
@@ -373,7 +373,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 			self.feed["state"]["playBool"] = false;
 			self.feed["state"]["playText"] = 'unplayed.';
-			console.log("Adding " + self.feed['track']['url'] + " of audio of type " + self.feed['state']['audioObject']);
+			console.log("Adding " + self.feed['track']['url']);
 			DataService.addFeed(self.feed);
 		}
 

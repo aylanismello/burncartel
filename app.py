@@ -6,7 +6,8 @@ from sc import SC
 
 app = Flask(__name__)
 Triangle(app)
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
+app.config['PROPOGATE_EXCEPTIONS'] = True
 
 def __init__(self):
 	print "in this bitch!"
@@ -14,6 +15,7 @@ def __init__(self):
 
 @app.route('/')
 def index():
+	print 'rendering index.html\n\n'
 	return render_template('index.html')
 
 
@@ -31,8 +33,13 @@ def get_feed(genre_id):
 
 @app.route('/getfeed/', methods=['GET'])
 def get_feed2():
+	print "get feed has been called \n\n"
 	infoz = SC().get()
-	print "got: \n\n\t %s" % infoz
+
+	if infoz is None:
+		raise AttributeError('did not properly return from SC.get()\n\n\n')
+
+	# print "got: \n\n\t %s" % infoz
 	return jsonify({'myjson': infoz})
 
 
