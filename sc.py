@@ -60,8 +60,8 @@ class SC(object):
 			# get latest track list by user id
 
 			# what if we want favorites?
-			t = client.get('/users/'+ str(u[0].id)+ '/favorites')
-			# t = client.get('/users/'+ str(u[0].id)+ '/tracks')
+			# t = client.get('/users/'+ str(u[0].id)+ '/favorites')
+			t = client.get('/users/'+ str(u[0].id)+ '/tracks')
 			#get id of latest track, etc, etc
 
 			trackCount = len(t)
