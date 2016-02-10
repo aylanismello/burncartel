@@ -347,7 +347,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		console.log('just received ' + i);
 	};
 
-	$http.get("/getfeed").
+	$http.get("/getfeedss").
 	then(function(response){
 		console.log("HELLOO. CALLING SERVER \n\n");
 		var r = response.data.myjson;
@@ -357,6 +357,11 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		// console.log('set that state tho');
 		DataService.setLoadState();
 	}, function errorCallback(response){
+		 var msg = "there was an error called " + response.status + " \n data: " + response.data +
+			 "\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText;
+			alert("SO SRY 4 DA JANKINESS:( plz refresh!) \n\n NERD_INFOZ: \n\n" + msg);
+
+
 				console.log("there was an error called " + response.status + " \n data: " + response.data +
 					"\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText);
 
