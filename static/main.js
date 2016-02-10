@@ -1,11 +1,14 @@
 var app = angular.module('myapp', ['ngMaterial']);
 
+
+
+
 function DataService(){
 	var feedz_ = [];
 	var loadState = false;
 	var help = "Here are some helpful shortcuts:    Space: Play/Pause  comma: Previous  period: Next. \
 		Be sure to check out our soundcloud at soundcloud.com/burncartel.";
-
+	var timeoutID = 0;
 
 	var currentTrack = {
 		title: 'Welcome to FireFeed.',
@@ -14,6 +17,18 @@ function DataService(){
 		playingBool: false,
 		audio: null,
 		pos: 0
+	};
+
+	this.setTimeout = function(id){
+		timeoutID = id;
+	};
+	this.getPos = function(){
+		currentTrack.pos = currentTrack.audio.currentTime;
+		return currentTrack.pos;
+	};
+
+	this.getDur = function(){
+		return currentTrack.audio.duration;
 	};
 
 	this.getHelp = function(){
@@ -48,7 +63,7 @@ function DataService(){
 
 	this.setTrackPos = function(pos){
 		feedz_[currentTrack['index']].state.pos = pos;
-		console.log('set to ' + feedz_[currentTrack['index']].state.pos);
+		// console.log('set to ' + feedz_[currentTrack['index']].state.pos);
 	};
 
 	this.getFeedSize = function(){
@@ -299,7 +314,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	};
 
 	self.getLoadState= function(){
-		console.log(DataService.getLoadState());
+		// console.log(DataService.getLoadState());
 		return DataService.getLoadState();
 	};
 
@@ -398,7 +413,7 @@ app.controller('playCtrl', function(DataService){
 	};
 
 	self.key = function(e){
-		console.log(e.charCode);
+		// console.log(e.charCode);
 		if (e.charCode == 32) {
     	e.preventDefault();
 			DataService.toggle();
