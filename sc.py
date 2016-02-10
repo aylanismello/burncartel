@@ -1,4 +1,4 @@
-import soundcloud, json, copy
+import soundcloud, json, copy, random
 
 class SC(object):
 
@@ -46,11 +46,16 @@ class SC(object):
 			# get latest track list by user id
 			t = client.get('/users/'+ str(u[0].id)+ '/tracks')
 			#get id of latest track, etc, etc
-			self.artistInfo['track']['ID'] = t[0].id
-			self.artistInfo['track']['title'] = t[0].title
-			self.artistInfo['track']['artwork_url'] = t[0].artwork_url
+
+			#print (type(u[0].track_count)) randomize which song on feed to play
+			trackCount = len(t)
+			trackNum = random.randint(0, trackCount)
+
+			self.artistInfo['track']['ID'] = t[trackNum].id
+			self.artistInfo['track']['title'] = t[trackNum].title
+			self.artistInfo['track']['artwork_url'] = t[trackNum].artwork_url
 			#get track streaming link based on id
-			track = client.get('tracks/'+str(t[0].id))
+			track = client.get('tracks/'+str(t[trackNum].id))
 			stream_url = client.get(track.stream_url, allow_redirects=False)
 			self.artistInfo['track']['url'] = stream_url.location
 

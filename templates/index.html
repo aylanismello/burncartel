@@ -23,7 +23,9 @@
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
+
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
+			<button style="display:inline;" id='help' class='playback'>?</button>
 		<button id='next' class='playback' ng-click='play_ctrl.hasNext()'>Next</button>
 	</div>
 
@@ -85,9 +87,8 @@
 
 
 
-<footer class='settings' ng-controller="Effects as fx">
 
-	<button id='help' class='playback'>?</button>
+<!-- <footer class='settings' ng-controller="Effects as fx"> -->
 
 
 		<!-- <md-button id="help" class="md-raised md-primary playback"  ng-cloak>?
@@ -95,41 +96,50 @@
 		</md-button> -->
 
 
-
+<!--
 		<div ng-controller="Genres">
-	  <form name="myForm">
-	    <select name="mySelect" id="mySelect"
-	      ng-options="option.name for option in data.availableOptions track by option.id"
-	      ng-model="data.selectedOption"></select>
-	  </form>
-		<md-button class="md-raised md-primary playback"  ng-click="get_ctrl.getFeedTho({{data.selectedOption|angular}})" ng-cloak> BURN
-			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
-		</md-button>
+				<button id='help' class='playback'>?</button>
 
-	  <hr>
-	  <!-- <tt>option = {{data.selectedOption|angular}}</tt><br/> -->
-	</div>
+				<md-button style='display: inline' class="md-raised md-primary playback"  ng-click="get_ctrl.getFeedTho({{data.selectedOption|angular}})" ng-cloak> BURN
+					 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
+				</md-button>
+
+		    <select name="mySelect" id="mySelect" style='display: inline'
+		      ng-options="option.name for option in data.availableOptions track by option.id"
+		      ng-model="data.selectedOption"></select>
 
 
 
+			<div layout>
+					 <h4 style='margin-right:1em; margin-left: 0.5em;'>Basic</h4>
+					 <md-slider  style='margin-bottom: 0em; bottom:0px;' flex md-discrete ng-model="rating" step="1" min="1" max="5" aria-label="rating"></md-slider>
+					 <h4 style='margin-left:1em; margin-right:0.5em;'> Eclectic </h4>
+				</div>
 
-Basic <md-slider flex md-discrete ng-model="rating1" class='center' step="1" min="1" max="5" aria-label="rating">
-	</md-slider> Eclectic
-	<hr>
-	<!-- <tt>slide = {{rating1|angular}}</tt> -->
+	  <tt>option = {{data.selectedOption|angular}}</tt><br/>
+	</div> -->
 
 
 
 
-</footer>
+							<!-- <tt>slide = {{rating|angular}}</tt> -->
 
+
+
+
+
+
+
+<!-- </footer> -->
+
+<footer class='settings' style='display:left;'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
 
 </div>
 
 
-<!-- <footer ng-show='get_ctrl.getLoadState()'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
-	Taste by <a href='hi.burncartel.com'>Burn Cartel</a>. </footer>
- -->
+
+
 
 
 </body>
