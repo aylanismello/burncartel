@@ -1,0 +1,2 @@
+1. Help turns and remains blue after clicking on it.
+2. Queries sometimes fail because of index out of range python errors.
