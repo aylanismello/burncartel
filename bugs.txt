@@ -1,2 +1,10 @@
-1. Help turns and remains blue after clicking on it.
-2. Queries sometimes fail because of index out of range python errors.
+[] 1. Help turns and remains blue after clicking on it.
+[] 2. Queries sometimes fail because of index out of range python errors.
+[] 3. if track has no url, default to another 100x100px source... to fix this just add it by default to
+to the track_art (tried to fix.., check results)
+[] 4. If track reaches end, then we can't move the next one without manually starting+stopping it.
+
+
+
+this causes an error
+ appending {'username': u'Astronautica', 'track': {'url': u'https://cf-media.sndcdn.com/sdHNO8VZgOd0.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vc2RITk84VlpnT2QwLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE0NTUwNzA4MzR9fX1dfQ__&Signature=N6yPLiQpL8eW6JIGTgKE3fVidYoiJIMQc6xvemlzZDbFtzMw0AcvbSnP8E8FmwJnARSRkIK-uzeJTmZdsn5awAxnXbYID340FHFmrCfznBNV58RdX3tEvZXhl6zZKCd~FxLZjW~x~TptIqufPRSwFaocvzoyF28zHhVnETKfdugs2A9EwPje46bc07ZM8Dx7YPIIBIP6uifuzg8I7MESnIMSoEEOCAIv9T4xS073qoS60xN5RHOw2ybLelWm~OBuVQYasBjWTpP2gmhrJNTUKU~u~4RsP~I~-z-nmnKILWEojioyLHs3HdEtiUgacMXbdsskS~lA3FbteDwmy6tAwQ__&Key-Pair-Id=APKAJAGZ7VMH2PFPW6UQ', 'artwork_url': u'https://i1.sndcdn.com/artworks-000144699627-ljkp4l-large.jpg', 'ID': 243930772, 'title': u'*69'}, 'avatar_url': u'https://i1.sndcdn.com/avatars-000203157844-30n98i-large.jpg', 'ID': 3084445}

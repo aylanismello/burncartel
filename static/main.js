@@ -311,7 +311,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			id: 0,
 			title: '',
 			url: '',
-			artwork_url: ''
+			artwork_url: 'http://cdn0.dailydot.com/uploaded/images/original/2015/4/5/fire.jpg'
 		},
 		state: {
 			playBool: 0,
