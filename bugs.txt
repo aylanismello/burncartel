@@ -23,7 +23,10 @@ AttributeError
 THIS IS APROBLEM 2:
   HTTPError: 500 Server Error: Internal Server Error for url: https://api.soundcloud.com/users/123634482/tracks?client_id=282558e0e8cdcd8a9b3ba2b4917596b7
 
-
+ERROR:
+  artist Monkeytown Records has 50 tracks
+  selecting track 39
+  getting track url of track id: 169300103
 
 
 
