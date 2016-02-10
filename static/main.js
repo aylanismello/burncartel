@@ -357,7 +357,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		// console.log('set that state tho');
 		DataService.setLoadState();
 	}, function errorCallback(response){
-				console.log("there was an error called " + response);
+				console.log("there was an error called " + response[0]);
+
 	});
 
 
