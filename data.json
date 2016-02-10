@@ -20,7 +20,23 @@
 		{"username": "flowfi"},
 		{"username": "cold-fresh-pillows"},
 		{"username": "boysnoizerecords"},
+		{"username": "pausemusicale"},
+		{"username": "boysnoizerecords"},
+		{"username": "syzygyrecords"},
+		{"username": "onandonrecords"},
+		{"username": "dimmakrecords"},
 		{"username": "foolsgoldrecs"},
+		{"username": "nickraymondg"},
+		{"username": "mellomusicgroup"},
+		{"username": "majesticcasual"},
+		{"username": "kitsune-maison"},
+		{"username": "spinninrecords"},
+		{"username": "yourstrulysf"},
+		{"username": "hillydilly"},
+		{"username": "topdawgent"},
+		{"username": "subpop"},
+		{"username": "edbangerrecords"},
+		{"username": "monkeytownrecords"},
 		{"username": "owsla"},
 		{"username": "nesthq"},
 		{"username": "hegemon"},
@@ -32,7 +48,7 @@
 		{"username": "brainfeeder"},
 		{"username": "huhwhatandwhere"},
 		{"username": "futurebeatsrec"},
-		{"username" : "futureclassic"},
+		{"username": "futureclassic"},
 		{"username": "toofutureshop"},
 		{"username": "future"},
 		{"username": "souletiquette"},
@@ -47,8 +63,6 @@
 		{"username": "wonderwheel"},
 		{"username": "blvntrecords"},
 		{"username": "recordrecordparis"}
-
-
 	],
 
 	"soundcloud_client": {
