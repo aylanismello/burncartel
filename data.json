@@ -1,5 +1,9 @@
 {
 	"artists": [
+			{"username": "secretsongs"}
+	],
+
+	"other": [
 		{"username": "xlr8r"},
 		{"username": "cosmonostro"},
 		{"username": "astronautico"},
@@ -13,6 +17,7 @@
 		{"username": "teamsupreme"},
 		{"username": "alphapup"},
 		{"username": "creamcollective"},
+		{"username": "shhsecretsongs"},
 		{"username": "saladacartel"},
 		{"username": "freshselects"},
 		{"username": "bad-panda-records"},
@@ -31,7 +36,6 @@
 		{"username": "kitsune-maison"},
 		{"username": "spinninrecords"},
 		{"username": "yourstrulysf"},
-		{"username": "topdawgent"},
 		{"username": "subpop"},
 		{"username": "edbangerrecords"},
 		{"username": "monkeytownrecords"},
@@ -61,6 +65,7 @@
 		{"username": "wonderwheel"},
 		{"username": "blvntrecords"},
 		{"username": "recordrecordparis"}
+
 	],
 
 	"soundcloud_client": {

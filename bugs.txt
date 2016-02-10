@@ -2,7 +2,7 @@
 [] 2. Queries sometimes fail because of index out of range python errors.
   problem: retrieved track list of 0 for certain artist.
     PROBLEM CHANNELS: hillydilly, majesticcausual (maybe they have streaming blocks? error check for this)
-                      TOPDAWGENT
+                       topdawgent
 
 [] 3. if track has no url, default to another 100x100px source... to fix this just add it by default to
 to the track_art (tried to fix.., check results)

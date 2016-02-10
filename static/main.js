@@ -368,7 +368,17 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			self.feed["username"] = $scope.feeds[i].username;
 			self.feed["avatar_url"] = $scope.feeds[i].avatar_url;
 			self.feed["track"] = $scope.feeds[i].track;
-			self.feed["track"]["url"] = $scope.feeds[i].track.url;
+
+			// console.log("art url is " + )
+
+			// self.feed["track"]["url"] = $scope.feeds[i].track.url;
+
+				// but just in case..
+			if(!$scope.feeds[i].track.artwork_url){
+				// console.log("no track art found, reverting to avatar art");
+				self.feed.track.artwork_url= $scope.feeds[i].avatar_url;
+			}
+
 
 
 			self.feed["state"]["playBool"] = false;
