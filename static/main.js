@@ -280,6 +280,9 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 	};
 
+	self.getFeedCheat = function(){
+		location.reload();
+	};
 
 
 	self.echo = function(i){
@@ -323,7 +326,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 	self.getFeed = function(){
 		return DataService.getFeed();
-	}
+	};
 
 	self.getFeedTho = function(i){
 		console.log('just received ' + i);
@@ -380,6 +383,9 @@ app.controller('playCtrl', function(DataService){
 		console.log( newIndex + ' less than ?? ' + DataService.getFeedSize() );
 		if( newIndex < DataService.getFeedSize() )
 			self.playPause(newIndex);
+		else
+			location.reload();
+
 
 
 	};

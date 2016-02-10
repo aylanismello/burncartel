@@ -1,3 +1,12 @@
+a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab,
+a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised,
+.md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab
+{
+      background-color: rgb(95, 111, 119);
+    
+}
+
+
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button,
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
   box-shadow: none;
@@ -26,6 +35,9 @@
 #genre-input{
   text-align: inline;
 }
+
+
+
 
 md-slider.md-default-theme .md-focus-ring, md-slider .md-focus-ring{
   background-color: #961D1D;
@@ -133,9 +145,9 @@ body{
 	width: 1.5em;
 }
 #help{
-  width:1em;
+  width:2.5em;
   height:2.5em;
-	border-radius:30px;
+	border-radius:50px;
   padding:0px 0px;
   margin: 0em 0em;
 }

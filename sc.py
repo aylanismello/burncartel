@@ -35,7 +35,7 @@ class SC(object):
 
 
 		print "\n\n called!!! \n\n"
-		numArtistsPerQuery = 1
+		numArtistsPerQuery = 6
 
 		for artistIndex in range(numArtistsPerQuery):
 			# get artist access

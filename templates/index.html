@@ -70,7 +70,7 @@
 			</div>
 
 
-		<button id='more' ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
+		<button id='more' ng-show='get_ctrl.getLoadState()' ng-click='get_ctrl.getFeedCheat()' class='playback'>More</button>
 
 
 
@@ -150,7 +150,7 @@
 
 <!-- </footer> -->
 
-<footer class='settings' style='padding: 1em 0em; display:left;'> Audio sources by <a href="http://soundcloud.com"> Soundcloud</a>.
+<footer class='settings' style='padding: 1em 0em; display:left;'> Audio by <a href="http://soundcloud.com"> Soundcloud</a>.
 	Taste and programming by <a href='{{url_for('about')}}'>Burn Cartel</a>. </footer>
 
 </div>
