@@ -1,9 +1,11 @@
 BACKEND:
 
 CATCH ATTRIBUTE ERROR:
-[0] resolve backend errors pertaining to certain queries
+[x] resolve backend errors pertaining to certain queries
 [] CREATE MORE SOPHISICATED METHOD OF GENERATING NEW FEED, NEW MODELS
 [] CREATE GET TRACKLIST FUNCTIONALITY FOR TRACKS IDENTIFIED AS MIXES
+
+
 
 FRONTEND:
 
@@ -11,6 +13,8 @@ FRONTEND:
 [1] MAKE DEFAULT ALBUM PIC THE ARTIST PIC SO WE DON'T HAVE WEIRD GAPS WHEN PICS AREN'T SET
 [2] GIVE USER A NOTIFICAITON NEXT TO SONG TRY TO PLAY IF THIS BULLSHIT HAPPENS:
 	https://cf-media.sndcdn.com/qJ8y2gtSopYY.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt…xWgWh~lMj0pgmQMiEbLyy8fCsIBgHYX6IAvB3nQ__&Key-Pair-Id=APKAJAGZ7VMH2PFPW6UQ Failed to load resource: the server responded with a status of 403 (Forbidden)
+[3] Make tracks undergo burn animation as they are played.. they stop burning when track is over :)
+[4] IMPORTANT: to fix error when server generated url is received expires, call the server for this url AS THE TRACK IS SELECTED. this has to be done, there's no easy fix since the link is designed to expire.
 
 
 [] MAKE MORE BUTTON ACTUALLY CALL SERVER AND USING NG-REPEATS BINDING, APPEND NEW SONGS TO THE DOM
