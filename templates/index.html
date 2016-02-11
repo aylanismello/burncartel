@@ -18,6 +18,8 @@
 	<div class='header' >
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
+
+		<!--  ahref = trackElement.permalink_url, just sayin... make sure u open in new window.-->
 		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 
