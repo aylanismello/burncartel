@@ -3,10 +3,6 @@ var app = angular.module('myapp', ['ngMaterial']);
 
 
 
-
-
-
-
 function DataService(){
 	var feedz_ = [];
 	var loadState = false;
@@ -20,7 +16,8 @@ function DataService(){
 		index: -1,
 		playingBool: false,
 		audio: null,
-		pos: 0
+		pos: 0,
+		permalink_url: ''
 	};
 
 
@@ -348,7 +345,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			id: 0,
 			title: '',
 			url: '',
-			artwork_url: 'http://cdn0.dailydot.com/uploaded/images/original/2015/4/5/fire.jpg'
+			artwork_url: '',
+			permalink_url: ''
 		},
 		state: {
 			playBool: 0,
@@ -400,6 +398,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			self.feed["username"] = $scope.feeds[i].username;
 			self.feed["avatar_url"] = $scope.feeds[i].avatar_url;
 			self.feed["track"] = $scope.feeds[i].track;
+			// self.feed.permalink_url = $scope.feeds[i].permalink_url;
+			// console.log(self.feed.permalink_url);
 
 			// console.log("art url is " + )
 

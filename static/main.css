@@ -1,9 +1,17 @@
+a:-webkit-any-link {
+    color: #5F6F77;
+    text-decoration: italics;
+    cursor: auto;
+}
+
+
+
 a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab,
 a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised,
 .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab
 {
       background-color: rgb(95, 111, 119);
-    
+
 }
 
 

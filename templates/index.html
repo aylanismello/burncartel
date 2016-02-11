@@ -20,7 +20,7 @@
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 
 		<!--  ahref = trackElement.permalink_url, just sayin... make sure u open in new window.-->
-		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'></h3>
+		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'> </h3>
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 
 		<div ng-controller="AppCtrl"  id="popupContainer" style='display: inline'>
@@ -69,7 +69,8 @@
 				<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
 				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' ng-show='get_ctrl.getLoadState()'>
 				<h2 class='track-info' id='username' ng-bind='f.username'></h2>
-				<h3 class='track-info' id="track-title" ng-bind='f.track.title'></h3>
+				<h3 style="color: black;" class='track-info' id="track-title"> <a href="{{f.track.permalink_url|angular}}" target="_blank">{{f.track.title|angular}}</a>
+</h3>
 			</div>
 
 
