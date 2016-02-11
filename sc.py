@@ -51,7 +51,7 @@ class SC(object):
 
 			u = client.get('/users', q=artist['username'])
 
-			print "got user data of %s" % u
+			#print "got user data of %s" % u
 
 			#set artist attributes, id, username, avatar_url
 			self.artistInfo['ID'] = u[0].id
@@ -65,10 +65,13 @@ class SC(object):
 			#get id of latest track, etc, etc
 
 			trackCount = len(t)
-			print "artist %s has %d tracks " % (self.artistInfo['username'], trackCount)
+			#print "artist %s has %d tracks " % (self.artistInfo['username'], trackCount)
 
-			trackNum = random.randint(0, trackCount - 1)
-			print "selecting track %d" % trackNum
+			if trackCount != 0:
+				trackNum = random.randint(0, trackCount - 1)
+				print "selecting track %d" % trackNum
+			else:
+				print "\n\n\ntrack count is 0, you are fucked.\n\n\n"
 
 			self.artistInfo['track']['ID'] = t[trackNum].id
 			self.artistInfo['track']['title'] = t[trackNum].title
