@@ -296,7 +296,18 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	};
 
 	self.getFeedCheat = function(){
-		location.reload();
+		$http.get("/getfeed").
+		then(function(response){
+			console.log("HELLOO. CALLING SERVER AGAIN\n\n");
+			var r = response.data.myjson;
+			console.log('my feeds start with user ' + r[0].username)
+			$scope.feeds = r;
+			self.prepWork();
+			// console.log('set that state tho');
+			DataService.setLoadState();
+		});
+
+		// location.reload();
 	};
 
 
