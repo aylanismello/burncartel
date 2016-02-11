@@ -3,6 +3,10 @@ var app = angular.module('myapp', ['ngMaterial']);
 
 
 
+
+
+
+
 function DataService(){
 	var feedz_ = [];
 	var loadState = false;
@@ -17,6 +21,13 @@ function DataService(){
 		playingBool: false,
 		audio: null,
 		pos: 0
+	};
+
+
+	this.getAudioObj = function(){
+
+		return currentTrack.audio;
+
 	};
 
 	this.setTimeout = function(id){
@@ -39,14 +50,14 @@ function DataService(){
 
 		if(currentTrack['index'] == -1){ // just start this shit off...
 			console.log('playin first of all...');
-			currentTrack['index'] = 0;
-			currentTrack['title'] = feedz_[0].track.title;
-			currentTrack['playingBool'] = true;
-			currentTrack['audio'] = new Audio(feedz_[0].track.url);
-			currentTrack['audio'].play();
+			currentTrack.index = 0;
+			currentTrack.title = feedz_[0].track.title;
+			currentTrack.playingBool = true;
+			currentTrack.audio = new Audio(feedz_[0].track.url);
+			currentTrack.audio.play();
 
 		}
-		else if(currentTrack['playingBool']){
+		else if(currentTrack.playingBool){
 			this.pauseCurrentTrack();
 			// currentTrack['audio'].pause();
 
@@ -54,15 +65,15 @@ function DataService(){
 
 		}
 		else{
-			currentTrack['audio'].play();
-			currentTrack['playingBool'] = true;
+			currentTrack.audio.play();
+			currentTrack.playingBool = true;
 		}
 
 
 	};
 
 	this.setTrackPos = function(pos){
-		feedz_[currentTrack['index']].state.pos = pos;
+		feedz_[currentTrack.index].state.pos = pos;
 		// console.log('set to ' + feedz_[currentTrack['index']].state.pos);
 	};
 
@@ -81,7 +92,7 @@ function DataService(){
 
 
 	this.getPlayState = function(){
-		return currentTrack['playingBool'];
+		return currentTrack.playingBool;
 	};
 
 	this.pauseCurrentTrack = function(idtho){
@@ -90,19 +101,19 @@ function DataService(){
 		// just set track pos..
 
 		console.log('pausing.');
-		currentTrack['playingBool'] = false;
-		currentTrack['audio'].pause();
+		currentTrack.playingBool = false;
+		currentTrack.audio.pause();
 	};
 
 	this.playAndUpdateTrack = function(idtho){
 			console.log('play and update track..');
 			this.pauseCurrentTrack();
 
-			currentTrack['index'] = idtho;
-			currentTrack['title'] = feedz_[idtho].track.title;
-			currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
-			currentTrack['audio'].play();
-			currentTrack['playingBool'] = true;
+			currentTrack.index = idtho;
+			currentTrack.title = feedz_[idtho].track.title;
+			currentTrack.audio = new Audio(feedz_[idtho].track.url);
+			currentTrack.audio.play();
+			currentTrack.playingBool = true;
 
 	}
 
@@ -110,23 +121,23 @@ function DataService(){
 
 		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SONG.
 
-		currentTrack['index'] = idtho;
-		currentTrack['title'] = feedz_[idtho].track.title;
-		currentTrack['audio'] = new Audio(feedz_[idtho].track.url);
+		currentTrack.index = idtho;
+		currentTrack.title = feedz_[idtho].track.title;
+		currentTrack.audio = new Audio(feedz_[idtho].track.url);
 
 
-		currentTrack['audio'].play();
-		currentTrack['playingBool'] = true;
-		console.log('now playing ' + currentTrack['title']);
+		currentTrack.audio.play();
+		currentTrack.playingBool = true;
+		console.log('now playing ' + currentTrack.title);
 
 	};
 
 	this.getCurrentTrack = function(idtho){
-		return currentTrack['title'];
+		return currentTrack.title;
 	};
 
 	this.getCurrentTrackIndex = function(){
-		return currentTrack['index'];
+		return currentTrack.index;
 	}
 
 	this.addFeed = function(st){
@@ -418,6 +429,11 @@ app.controller('getCtrl', function($scope, $http, DataService){
 app.controller('playCtrl', function(DataService){
 	var self = this;
 
+
+
+
+
+
 	self.shout = function(){
 		alert('SHOUT');
 	};
@@ -492,6 +508,12 @@ app.controller('playCtrl', function(DataService){
 
 	self.playPause = function(idtho){
 
+
+		// var x = DataService.getAudioObj();
+		// console.log("got this: " + x);
+		// x.onended = function(){
+		// 	alert("SONG IS OVER AS FUCK");
+		// };
 
 
 		console.log('playin ' + idtho);
