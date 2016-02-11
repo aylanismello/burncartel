@@ -34,8 +34,6 @@
 		{"username": "dimmakrecords"},
 		{"username": "foolsgoldrecs"},
 		{"username": "mellomusicgroup"},
-		{"username": "yourstrulysf"},
-		{"username": "subpop"},
 		{"username": "edbangerrecords"},
 		{"username": "nesthq"},
 		{"username": "hegemon"},
@@ -84,7 +82,9 @@
 		{"username": "boysnoizerecords"},
 		{"username": "saladacartel"},
 		{"username": "runthetrap"},
-		{"username": "topdawgent"}
+		{"username": "topdawgent"},
+		{"username": "yourstrulysf"},
+		{"username": "subpop"}
 
 	],
 
