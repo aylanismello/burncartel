@@ -1,0 +1,17 @@
+user:{
+
+	soundcloud:{
+	}, // soundcloud generated data
+	bc:{
+		mix: false // if track exceeds 15 minutes , it is a mix
+		influenceRatio: 1.5 // numFollowingUser / numUserIsFollowing
+										// be careful not to divide by 0 lol
+		associatedUsers: [] // list of x most followed users label is following
+		
+
+	} // this is data that i generate based on soundcloud data
+
+
+
+
+}
