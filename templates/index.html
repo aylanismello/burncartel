@@ -57,21 +57,23 @@
 
 <div class='content'>
 
-		<div ng-hide='get_ctrl.getLoadState()'>
+		<div ng-hide='get_ctrl.getInitialLoadState()'>
 		<h2>LOADING FEED</h2>
-				<div layout="row" layout-sm="column" layout-align="space-around">
-		    <md-progress-circular md-mode="indeterminate" ng-controller='AppCtrl'></md-progress-circular>
-		  </div>
+
 		</div>
-		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
+		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index " ng-show='get_ctrl.getInitialLoadState()'>
 
 
 				<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)' ng-show='get_ctrl.getLoadState()'>
+				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
 				<h2 class='track-info' id='username' ng-bind='f.username'></h2>
 				<h3 style="color: black;" class='track-info' id="track-title"> <a href="{{f.track.permalink_url|angular}}" target="_blank">{{f.track.title|angular}}</a>
 </h3>
 			</div>
+
+			<div layout="row" layout-sm="column" layout-align="space-around" ng-hide='get_ctrl.getLoadState()'>
+			<md-progress-circular md-mode="indeterminate" ng-controller='AppCtrl'></md-progress-circular>
+		</div>
 
 
 		<button id='more' ng-show='get_ctrl.getLoadState()' ng-click='get_ctrl.getFeedCheat()' class='playback'>More</button>

@@ -1,4 +1,4 @@
-import soundcloud, json, copy, random
+import soundcloud, json, copy, random, time
 
 class SC(object):
 
@@ -6,7 +6,13 @@ class SC(object):
 		# load json with artists to populate feed
 		json_file = "data.json"
 		json_data = open(json_file)
+		self.api_data = json.load(json_data)
+
+		json_file = "out.json"
+		json_data = open(json_file)
 		self.data = json.load(json_data)
+
+
 
 		#my model
 		self.artistInfos = []
@@ -27,44 +33,38 @@ class SC(object):
 
 
 	def get(self):
-		client = soundcloud.Client(client_id=self.data['soundcloud_client']['id'])
+		client = soundcloud.Client(client_id=self.api_data['soundcloud_client']['id'])
 
 		if client is None:
 			print "Could not connect to client."
 			return
 		print "connected to client of %s " % client
 
-
-		print "\n\n called!!! \n\n"
 		numArtistsPerQuery = 6
 
-		upperBound = len(self.data['artists'])
+		upperBound = len(self.data['users'])
+
 		print "artist num in json file is %d" % upperBound
-
+		getRequests = 0 # soundcloud api queries
+		startTime = time.time() # start time
 		i = 0
+
 		while i < numArtistsPerQuery:
+
 			temp = i
-			artistNum = random.randint(0, upperBound-1)
-			print "go artist num %d" % artistNum
-			artist = self.data['artists'][artistNum]
+			userNum = random.randint(0, upperBound-1)
+			# userNum = 0
+			user = self.data['users'][userNum]
 
 
-			u = client.get('/users', q=artist['username'])
+			self.artistInfo['avatar_url'] = user['soundcloud']['avatar_url']
+			self.artistInfo['ID'] = user['soundcloud']['ID']
+			self.artistInfo['username'] = user['soundcloud']['username']
 
-			#print "got user data of %s" % u
+			#TRACKLIST
+			tracklist = user['soundcloud']['tracks']
 
-			#set artist attributes, id, username, avatar_url
-			self.artistInfo['ID'] = u[0].id
-			self.artistInfo['username'] = u[0].username
-			self.artistInfo['avatar_url'] = u[0].avatar_url
-			# get latest track list by user id
-
-			# what if we want favorites?
-			# t = client.get('/users/'+ str(u[0].id)+ '/favorites')
-			t = client.get('/users/'+ str(u[0].id)+ '/tracks')
-			#get id of latest track, etc, etc
-
-			trackCount = len(t)
+			trackCount = len(tracklist)
 			#print "artist %s has %d tracks " % (self.artistInfo['username'], trackCount)
 
 			if trackCount != 0:
@@ -73,40 +73,39 @@ class SC(object):
 			else:
 				print "\n\n\ntrack count is 0, you are fucked.\n\n\n"
 
-			self.artistInfo['track']['ID'] = t[trackNum].id
-			self.artistInfo['track']['title'] = t[trackNum].title
-			self.artistInfo['track']['artwork_url'] = t[trackNum].artwork_url
-			#get track streaming link based on id
+			# trackNum = 0
 
-			stringTrackID = str(t[trackNum].id)
-			print "getting track url of track id: %s " % stringTrackID
+			self.artistInfo['track']['ID'] = tracklist[trackNum]['ID']
+			self.artistInfo['track']['title'] = tracklist[trackNum]['title']
+			self.artistInfo['track']['artwork_url'] = tracklist[trackNum]['artwork_url']
 
-			track = client.get('tracks/'+stringTrackID)
+			track = tracklist[trackNum]
+
+
 
 			#MUST CHECK IF TRACK IS STREAMABLE
-			print("is track streamable? %s ") % track.streamable
 
-			if not track.streamable:
+			if not track['streamable']:
 				print("track not streamable, should get another track\n\n\n\n")
 				i = temp #bug if i is 0
 			else:
+				stream_url = 'balls'
 
-
-				if track is None:
-					raise AttributeError('fucked up in getting track\n\n\n\n">')
-
-				print "should deal with %s for getting stream_url of %s" % (track, track.stream_url)
-
-				stream_url = client.get(track.stream_url, allow_redirects=False)
-				permalink_url = track.permalink_url
+				stream_url = client.get(track['stream_url'], allow_redirects=False)
 
 				if stream_url is None:
 					raise AttributeError('fucked up in getting stream_url\n\n\n\n">')
 
 				self.artistInfo['track']['url'] = stream_url.location
-				self.artistInfo['track']['permalink_url'] = permalink_url
+				# print stream_url.location
+				self.artistInfo['track']['permalink_url'] = track['permalink_url']
 				self.artistInfos.append(copy.deepcopy(self.artistInfo))
 				i += 1
 
+		elapsedTime = time.time() - startTime
 
+		print ("time for this update was %d" % elapsedTime)
+
+
+		print "total of %d get requests" % getRequests
 		return self.artistInfos

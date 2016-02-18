@@ -5,6 +5,7 @@ var app = angular.module('myapp', ['ngMaterial']);
 
 function DataService(){
 	var feedz_ = [];
+	var loadedOnce = false;
 	var loadState = false;
 	var help = "Here are some helpful shortcuts:    Space: Play/Pause  comma: Previous  period: Next. \
 		Be sure to check out our soundcloud at soundcloud.com/burncartel.";
@@ -20,6 +21,21 @@ function DataService(){
 		permalink_url: ''
 	};
 
+	this.getPlayedBefore = function(){
+		return feedz_[currentTrack.index].state.playedBefore;
+	};
+
+	this.setInitialLoadState = function(){
+
+		loadedOnce = true;
+		console.log("setting loaded once to " + loadedOnce);
+
+	};
+
+	this.getInitialLoadState = function(){
+		console.log("returning " + loadedOnce);
+		return loadedOnce;
+	};
 
 	this.getAudioObj = function(){
 
@@ -47,9 +63,11 @@ function DataService(){
 
 		if(currentTrack['index'] == -1){ // just start this shit off...
 			console.log('playin first of all...');
+			feedz_[0].state.playedBefore = true;
 			currentTrack.index = 0;
 			currentTrack.title = feedz_[0].track.title;
 			currentTrack.playingBool = true;
+
 			currentTrack.audio = new Audio(feedz_[0].track.url);
 			currentTrack.audio.play();
 
@@ -78,11 +96,12 @@ function DataService(){
 		return feedz_.length;
 	};
 
-	this.setLoadState = function(){
-		loadState = true;
+	this.setLoadState = function(lstate){
+		loadState = lstate;
 	};
 
 	this.getLoadState = function(){
+		console.log("load state is " + loadState);
 		return loadState;
 	};
 
@@ -298,21 +317,27 @@ app.controller('Effects', function($scope){
 app.controller('getCtrl', function($scope, $http, DataService){
 	var self = this;
 
+
+
 	$scope.getNewBurn = function(){
 		console.log('querying new bern.');
 
 	};
 
 	self.getFeedCheat = function(){
+		DataService.setLoadState(false);
 		$http.get("/getfeed").
 		then(function(response){
-			console.log("HELLOO. CALLING SERVER AGAIN\n\n");
+
+
+			console.log("setting load state to false");
+			console.log("HELLOO. CALLING SERVER AGAIN 4 MORE\n\n");
 			var r = response.data.myjson;
 			console.log('my feeds start with user ' + r[0].username)
 			$scope.feeds = r;
 			self.prepWork();
-			// console.log('set that state tho');
-			DataService.setLoadState();
+			console.log('set that to tru tho');
+			DataService.setLoadState(true);
 		});
 
 		// location.reload();
@@ -328,9 +353,21 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		alert("SHOUT!");
 	};
 
-	self.setLoadState = function(){
-		DataService.setLoadState();
+	self.setInitialLoadState = function(){
+		DataService.setInitialLoadState();
+	}
+
+	self.getInitialLoadState = function(){
+		console.log("returning " + DataService.getInitialLoadState());
+		return DataService.getInitialLoadState();
+	}
+
+	self.setLoadState = function(lstate){
+		console.log("setting shit to " + lstate);
+		DataService.setLoadState(lstate);
 	};
+
+
 
 	self.getLoadState= function(){
 		// console.log(DataService.getLoadState());
@@ -352,7 +389,8 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			playBool: 0,
 			playText: '',
 			audioObject: null,
-			position: 0
+			position: 0,
+			playedBefore: false
 		}
 
 	};
@@ -369,13 +407,18 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 	$http.get("/getfeed").
 	then(function(response){
+
 		console.log("HELLOO. CALLING SERVER \n\n");
 		var r = response.data.myjson;
 		console.log('my feeds start with user ' + r[0].username)
 		$scope.feeds = r;
 		self.prepWork();
 		// console.log('set that state tho');
-		DataService.setLoadState();
+		DataService.setLoadState(true);
+		DataService.setInitialLoadState();
+		//calling next one now
+
+
 	}, function errorCallback(response){
 		 var msg = "there was an error called " + response.status + " \n data: " + response.data +
 			 "\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText;
@@ -518,18 +561,23 @@ app.controller('playCtrl', function(DataService){
 
 		console.log('playin ' + idtho);
 
+
+
 		if( (DataService.getPlayState() == false) && (idtho != DataService.getCurrentTrackIndex() ) ){
 			DataService.playCurrentTrack(idtho); // diff track, from pause state. also first time
 			console.log('diff track from pause state');
+			console.log("has this been played before?" + DataService.getPlayedBefore());
 		}
 		else if( (DataService.getPlayState() == true) && (idtho != DataService.getCurrentTrackIndex() ) ){
 			DataService.playAndUpdateTrack(idtho); //diff track, from play state
 			console.log('diff track from play state');
+			console.log("has this been played before?" + DataService.getPlayedBefore());
 		}
 		else if(idtho == DataService.getCurrentTrackIndex() ) // same track, played or paused..
 		{
 			console.log('just toggling');
 			self.toggle();
+			console.log("has this been played before?" + DataService.getPlayedBefore());
 
 		}
 		else{
