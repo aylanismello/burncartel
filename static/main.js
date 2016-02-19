@@ -408,7 +408,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	$http.get("/getfeed").
 	then(function(response){
 
-		console.log("HELLOO. CALLING SERVER \n\n");
+		console.log("HELLOO. CALLING SERVER FIRST TIME \n\n");
 		var r = response.data.myjson;
 		console.log('my feeds start with user ' + r[0].username)
 		$scope.feeds = r;
@@ -441,21 +441,10 @@ app.controller('getCtrl', function($scope, $http, DataService){
 			self.feed["username"] = $scope.feeds[i].username;
 			self.feed["avatar_url"] = $scope.feeds[i].avatar_url;
 			self.feed["track"] = $scope.feeds[i].track;
-			// self.feed.permalink_url = $scope.feeds[i].permalink_url;
-			// console.log(self.feed.permalink_url);
 
-			// console.log("art url is " + )
-
-			// self.feed["track"]["url"] = $scope.feeds[i].track.url;
-
-				// but just in case..
-			if(!$scope.feeds[i].track.artwork_url){
-				// console.log("no track art found, reverting to avatar art");
+			if(!$scope.feeds[i].track.artwork_url)
 				self.feed.track.artwork_url= $scope.feeds[i].avatar_url;
-			}
-
-
-
+			
 			self.feed["state"]["playBool"] = false;
 			self.feed["state"]["playText"] = 'unplayed.';
 			console.log("Adding " + self.feed['track']['url']);

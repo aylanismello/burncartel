@@ -4,13 +4,19 @@ class SC(object):
 
 	def __init__(self):
 		# load json with artists to populate feed
+		starttime = time.time()
+
 		json_file = "data.json"
 		json_data = open(json_file)
 		self.api_data = json.load(json_data)
 
+
 		json_file = "out.json"
 		json_data = open(json_file)
 		self.data = json.load(json_data)
+
+		elapsedtime = time.time() - starttime
+		print ("took %d seconds to load json" % elapsedtime)
 
 
 
@@ -109,3 +115,31 @@ class SC(object):
 
 		print "total of %d get requests" % getRequests
 		return self.artistInfos
+
+	def getfull(self):
+		client = soundcloud.Client(client_id=self.api_data['soundcloud_client']['id'])
+
+		returnTracks = []
+
+		track = {
+			'title': '',
+			'steam_url': ''
+		}
+
+		if client is None:
+			print "Could not connect to client."
+			return
+
+		thisID = 448
+		tracks = client.get('/users/'+ str(thisID)+ '/tracks')
+
+		for t in tracks:
+			track['stream_url'] = t.stream_url
+			track['title'] = t.title
+			if t.streamable:
+				track['stream_url'] = client.get(track['stream_url'], allow_redirects=False).location
+			else:
+				track['stream_url'] = "FUCK YOU"
+			returnTracks.append(track)
+
+		return returnTracks

@@ -18,6 +18,9 @@ def index():
 	print 'rendering index.html\n\n'
 	return render_template('index.html')
 
+@app.route('/howler')
+def howler():
+	return render_template('howler.html')
 
 @app.route('/about')
 def about():
@@ -28,6 +31,11 @@ def get_feed(genre_id):
 	print genre_id
 	infoz = SC().get()
 	print "got: \n\n\t %s" % infoz
+	return jsonify({'myjson': infoz})
+
+@app.route('/getfull', methods=['GET'])
+def getfull():
+	infoz = SC().getfull()
 	return jsonify({'myjson': infoz})
 
 
