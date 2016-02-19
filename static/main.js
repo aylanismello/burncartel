@@ -538,6 +538,7 @@ app.controller('getCtrl', function($scope, $http, DataService){
 		// for all shit in feeds do this:
 		for(var i = 0; i < $scope.feeds.length; i++){
 			self.feed["id"] = $scope.feeds[i].id;
+
 			self.feed["username"] = $scope.feeds[i].username;
 			self.feed["avatar_url"] = $scope.feeds[i].avatar_url;
 			self.feed["track"] = $scope.feeds[i].track;
