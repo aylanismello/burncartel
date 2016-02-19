@@ -4,6 +4,7 @@ var app = angular.module('myapp', ['ngMaterial']);
 
 
 function DataService(){
+	var songs = []; // array of howl objects
 	var feedz_ = [];
 	var loadedOnce = false;
 	var loadState = false;
@@ -18,8 +19,11 @@ function DataService(){
 		playingBool: false,
 		audio: null,
 		pos: 0,
-		permalink_url: ''
+		permalink_url: '',
+		howl: []
 	};
+
+	self = this;
 
 	this.getPlayedBefore = function(){
 		return feedz_[currentTrack.index].state.playedBefore;
@@ -28,12 +32,12 @@ function DataService(){
 	this.setInitialLoadState = function(){
 
 		loadedOnce = true;
-		console.log("setting loaded once to " + loadedOnce);
+		// console.log("setting loaded once to " + loadedOnce);
 
 	};
 
 	this.getInitialLoadState = function(){
-		console.log("returning " + loadedOnce);
+		// console.log("returning " + loadedOnce);
 		return loadedOnce;
 	};
 
@@ -59,28 +63,31 @@ function DataService(){
 		return help
 	};
 
-	this.toggle = function(){
+	self.toggle = function(){
 
 		if(currentTrack['index'] == -1){ // just start this shit off...
-			console.log('playin first of all...');
+			// console.log('playin first of all...');
 			feedz_[0].state.playedBefore = true;
 			currentTrack.index = 0;
 			currentTrack.title = feedz_[0].track.title;
 			currentTrack.playingBool = true;
 
-			currentTrack.audio = new Audio(feedz_[0].track.url);
-			currentTrack.audio.play();
+
+			// currentTrack.audio = new Audio(feedz_[0].track.url);
+			// currentTrack.audio.play();
+			songs[currentTrack.index].play();
 
 		}
 		else if(currentTrack.playingBool){
-			this.pauseCurrentTrack();
+			self.pauseCurrentTrack();
 			// currentTrack['audio'].pause();
 
 			// currentTrack['playingBool'] = false;
 
 		}
 		else{
-			currentTrack.audio.play();
+			// currentTrack.audio.play();
+			songs[currentTrack.index].play();
 			currentTrack.playingBool = true;
 		}
 
@@ -101,7 +108,7 @@ function DataService(){
 	};
 
 	this.getLoadState = function(){
-		console.log("load state is " + loadState);
+		// console.log("load state is " + loadState);
 		return loadState;
 	};
 
@@ -111,38 +118,99 @@ function DataService(){
 		return currentTrack.playingBool;
 	};
 
-	this.pauseCurrentTrack = function(idtho){
+
+
+
+	self.pauseCurrentTrack = function(idtho){
 
 
 		// just set track pos..
 
 		console.log('pausing.');
 		currentTrack.playingBool = false;
-		currentTrack.audio.pause();
+
+		songs[currentTrack.index].pause();
+		// currentTrack.audio.pause();
 	};
 
-	this.playAndUpdateTrack = function(idtho){
+	self.playAndUpdateTrack = function(idtho){
 			console.log('play and update track..');
-			this.pauseCurrentTrack();
+			self.pauseCurrentTrack();
 
 			currentTrack.index = idtho;
 			currentTrack.title = feedz_[idtho].track.title;
-			currentTrack.audio = new Audio(feedz_[idtho].track.url);
-			currentTrack.audio.play();
+			// currentTrack.audio = new Audio(feedz_[idtho].track.url);
+
+
+			songs[currentTrack.index].play();
+			// currentTrack.audio.play();
+
 			currentTrack.playingBool = true;
 
 	}
 
-	this.playCurrentTrack = function(idtho){
+	function playPause(idtho){
+
+		if( (currentTrack['playingBool'] == false) && (idtho != currentTrack['index'] ) ){
+			self.playCurrentTrack(idtho); // diff track, from pause state. also first time
+			console.log('diff track from pause state');
+			// console.log("has this been played before?" + this.getPlayedBefore());
+		}
+		else if( (currentTrack['playingBool'] == true) && (idtho != currentTrack['index'] ) ){
+			self.playAndUpdateTrack(idtho); //diff track, from play state
+			console.log('diff track from play state');
+			// console.log("has this been played before?" + DataService.getPlayedBefore());
+		}
+		else if(idtho == currentTrack['index'] ) // same track, played or paused..
+		{
+			console.log('just toggling');
+			self.toggle();
+
+			// console.log("has this been played before?" + DataService.getPlayedBefore());
+
+		}
+		else{
+			console.log('WHAT???.');
+		}
+	};
+
+	self.getFeedCheat = function(){
+
+
+
+	}
+
+	self.hasNext = function(){
+		var newIndex = currentTrack['index'];
+		newIndex++;
+		// console.log( newIndex + ' less than ?? ' + DataService.getFeedSize() );
+
+		if( newIndex < feedz_.length )
+			playPause(newIndex);
+		else
+			self.getFeedCheat();
+		//	location.reload(); // this is actually getting more at getfeedcheat
+
+	};
+
+	self.playCurrentTrack = function(idtho){
 
 		// MAKE IT SO WE DON'T PAUSE FIRST BEFORE CHANGING SONG.
 
 		currentTrack.index = idtho;
 		currentTrack.title = feedz_[idtho].track.title;
-		currentTrack.audio = new Audio(feedz_[idtho].track.url);
+
+		console.log("PLAYING");
+		// current
+		songs[currentTrack.index].play();
 
 
-		currentTrack.audio.play();
+		// currentTrack.howl.push(songs[feedz_[idtho]]);
+		// currentTrack.howl[0].play();
+		// currentTrack.audio = new Audio(feedz_[idtho].track.url);
+		// currentTrack.audio.play(); CHANGED
+
+
 		currentTrack.playingBool = true;
 		console.log('now playing ' + currentTrack.title);
 
@@ -159,7 +227,39 @@ function DataService(){
 	this.addFeed = function(st){
 		var toPush = JSON.parse(JSON.stringify(st))
 		feedz_.push(toPush);
+		this.addHowlers(toPush);
 		// st['state']['audioObject'].play();
+	};
+
+	this.addHowlers = function(newSongs){
+
+		console.log('adding howlers..');
+		// for(i = 0; i < newSongsJSON.length; i++){
+		songs.push(
+				new Howl({
+					urls: [newSongs['track']['url']],
+					buffer: true,
+					onload:function(){
+						console.log(newSongs['track']['title'] + " was loaded!");
+						// this.play();
+						// songs[0].play();
+					},
+					onplay: function(){
+						console.log(newSongs['track']['title'] + " was played!");
+
+					},
+					onend: function(){
+						console.log("seeing if has next");
+						self.hasNext();
+
+					}
+				})
+			);
+
+
+		console.log("just added " + songs[0]);
+
+		// }// for loop
 	};
 
 	this.getFeed = function(){
@@ -327,17 +427,17 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	self.getFeedCheat = function(){
 		DataService.setLoadState(false);
 		$http.get("/getfeed").
-		then(function(response){
+			then(function(response){
 
 
-			console.log("setting load state to false");
-			console.log("HELLOO. CALLING SERVER AGAIN 4 MORE\n\n");
-			var r = response.data.myjson;
-			console.log('my feeds start with user ' + r[0].username)
-			$scope.feeds = r;
-			self.prepWork();
-			console.log('set that to tru tho');
-			DataService.setLoadState(true);
+				// console.log("setting load state to false");
+				console.log("HELLOO. CALLING SERVER AGAIN 4 MORE\n\n");
+				var r = response.data.myjson;
+				console.log('my feeds start with user ' + r[0].username)
+				$scope.feeds = r;
+				self.prepWork();
+				console.log('set that to tru tho');
+				DataService.setLoadState(true);
 		});
 
 		// location.reload();
@@ -358,12 +458,12 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	}
 
 	self.getInitialLoadState = function(){
-		console.log("returning " + DataService.getInitialLoadState());
+		// console.log("returning " + DataService.getInitialLoadState());
 		return DataService.getInitialLoadState();
 	}
 
 	self.setLoadState = function(lstate){
-		console.log("setting shit to " + lstate);
+		// console.log("setting shit to " + lstate);
 		DataService.setLoadState(lstate);
 	};
 
@@ -406,30 +506,30 @@ app.controller('getCtrl', function($scope, $http, DataService){
 	};
 
 	$http.get("/getfeed").
-	then(function(response){
+		then(function(response){
 
-		console.log("HELLOO. CALLING SERVER FIRST TIME \n\n");
-		var r = response.data.myjson;
-		console.log('my feeds start with user ' + r[0].username)
-		$scope.feeds = r;
-		self.prepWork();
-		// console.log('set that state tho');
-		DataService.setLoadState(true);
-		DataService.setInitialLoadState();
-		//calling next one now
-
-
-	}, function errorCallback(response){
-		 var msg = "there was an error called " + response.status + " \n data: " + response.data +
-			 "\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText;
-			alert("SO SRY 4 DA JANKINESS:( plz refresh!) \n\n NERD_INFOZ: \n\n" + msg);
+			console.log("HELLOO. CALLING SERVER FIRST TIME \n\n");
+			var r = response.data.myjson;
+			console.log('my feeds start with user ' + r[0].username)
+			$scope.feeds = r;
+			self.prepWork();
+			// console.log('set that state tho');
+			DataService.setLoadState(true);
+			DataService.setInitialLoadState();
+			//calling next one now
 
 
-				console.log("there was an error called " + response.status + " \n data: " + response.data +
-					"\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText);
+		}, function errorCallback(response){
+			 var msg = "there was an error called " + response.status + " \n data: " + response.data +
+				 "\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText;
+				alert("SO SRY 4 DA JANKINESS:( plz refresh!) \n\n NERD_INFOZ: \n\n" + msg);
 
 
-	});
+					console.log("there was an error called " + response.status + " \n data: " + response.data +
+						"\nheader: " + response.headers + "\nconfig: " + response.config + "\nstatusText: " + response.statusText);
+
+
+		});
 
 
 
@@ -444,10 +544,11 @@ app.controller('getCtrl', function($scope, $http, DataService){
 
 			if(!$scope.feeds[i].track.artwork_url)
 				self.feed.track.artwork_url= $scope.feeds[i].avatar_url;
-			
+
 			self.feed["state"]["playBool"] = false;
 			self.feed["state"]["playText"] = 'unplayed.';
-			console.log("Adding " + self.feed['track']['url']);
+			console.log("Adding " + self.feed['track']['title'] + " by " + self.feed['username']);
+
 			DataService.addFeed(self.feed);
 		}
 
@@ -464,21 +565,21 @@ app.controller('playCtrl', function(DataService){
 
 
 
-
-
 	self.shout = function(){
 		alert('SHOUT');
 	};
 
 	self.hasNext = function(){
 
-		var newIndex = DataService.getCurrentTrackIndex();
-		newIndex++;
-		console.log( newIndex + ' less than ?? ' + DataService.getFeedSize() );
-		if( newIndex < DataService.getFeedSize() )
-			self.playPause(newIndex);
-		else
-			location.reload();
+		DataService.hasNext();
+		// var newIndex = DataService.getCurrentTrackIndex();
+		// newIndex++;
+		// console.log( newIndex + ' less than ?? ' + DataService.getFeedSize() );
+		//
+		// if( newIndex < DataService.getFeedSize() )
+		// 	self.playPause(newIndex);
+		// else
+		// 	location.reload();
 
 
 

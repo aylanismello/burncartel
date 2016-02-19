@@ -46,7 +46,7 @@ class SC(object):
 			return
 		print "connected to client of %s " % client
 
-		numArtistsPerQuery = 6
+		numArtistsPerQuery = 5
 
 		upperBound = len(self.data['users'])
 
