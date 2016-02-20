@@ -62,13 +62,11 @@ class SC(object):
 			# userNum = 0
 			user = self.data['users'][userNum]
 
-			print ("user of %s " % user)
 
 			self.artistInfo['avatar_url'] = user['soundcloud']['avatar_url']
 			self.artistInfo['ID'] = user['soundcloud']['ID']
 			self.artistInfo['username'] = user['soundcloud']['username']
 
-			print ("added %s" % user['soundcloud']['username'])
 
 			#TRACKLIST
 			tracklist = user['soundcloud']['tracks']
@@ -89,7 +87,6 @@ class SC(object):
 			self.artistInfo['track']['artwork_url'] = tracklist[trackNum]['artwork_url']
 
 
-			print ("added track %s " % tracklist[trackNum]['title'])
 
 			track = tracklist[trackNum]
 
@@ -120,10 +117,6 @@ class SC(object):
 
 		#BREAKS HERE
 
-		for artistInfo in self.artistInfos:
-			print ("got %s by % s " % (artistInfo['track']['title'], artistInfo['username']) )
-
-		print "total of %d get requests" % getRequests
 		return self.artistInfos
 
 	def getfull(self):
