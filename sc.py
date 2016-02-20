@@ -46,7 +46,7 @@ class SC(object):
 			return
 		print "connected to client of %s " % client
 
-		numArtistsPerQuery = 5
+		numArtistsPerQuery = 6
 
 		upperBound = len(self.data['users'])
 
@@ -62,10 +62,13 @@ class SC(object):
 			# userNum = 0
 			user = self.data['users'][userNum]
 
+			print ("user of %s " % user)
 
 			self.artistInfo['avatar_url'] = user['soundcloud']['avatar_url']
 			self.artistInfo['ID'] = user['soundcloud']['ID']
 			self.artistInfo['username'] = user['soundcloud']['username']
+
+			print ("added %s" % user['soundcloud']['username'])
 
 			#TRACKLIST
 			tracklist = user['soundcloud']['tracks']
@@ -84,6 +87,9 @@ class SC(object):
 			self.artistInfo['track']['ID'] = tracklist[trackNum]['ID']
 			self.artistInfo['track']['title'] = tracklist[trackNum]['title']
 			self.artistInfo['track']['artwork_url'] = tracklist[trackNum]['artwork_url']
+
+
+			print ("added track %s " % tracklist[trackNum]['title'])
 
 			track = tracklist[trackNum]
 
@@ -112,6 +118,10 @@ class SC(object):
 
 		print ("time for this update was %d" % elapsedTime)
 
+		#BREAKS HERE
+
+		for artistInfo in self.artistInfos:
+			print ("got %s by % s " % (artistInfo['track']['title'], artistInfo['username']) )
 
 		print "total of %d get requests" % getRequests
 		return self.artistInfos
@@ -141,5 +151,9 @@ class SC(object):
 			else:
 				track['stream_url'] = "FUCK YOU"
 			returnTracks.append(track)
+
+
+
+
 
 		return returnTracks

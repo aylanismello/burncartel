@@ -47,6 +47,7 @@ def get_feed2():
 	if infoz is None:
 		raise AttributeError('did not properly return from SC.get()\n\n\n')
 
+	
 	# print "got: \n\n\t %s" % infoz
 	return jsonify({'myjson': infoz})
 

@@ -47,8 +47,11 @@ class Pregame(object):
 # users should have always updated 1. username, 2. id, 3. track_count, 4. follower_count
 
 	def refresh(self):
-		i = 0
+		artistCount = 0
 		for artist in self.data['artists']:
+
+			self.user['soundcloud']['tracks'] = []
+
 			u = self.client.get('/users', q=artist['username'])
 			# print u[0].username
 			u = u[0]
@@ -68,7 +71,10 @@ class Pregame(object):
 
 			tracks = self.client.get('/users/'+ str(self.user['soundcloud']['ID'])+ '/tracks')
 
+
+			trackCount = 0
 			for t in tracks:
+				t = tracks[trackCount]
 				self.track['ID'] = t.id
 				self.track['title'] = t.title
 				self.track['artwork_url'] = t.artwork_url
@@ -77,9 +83,11 @@ class Pregame(object):
 
 				if t.streamable:
 					self.track['stream_url'] = t.stream_url
+					self.track['permalink_url'] = t.permalink_url
+					self.user['soundcloud']['tracks'].append(copy.deepcopy(self.track))
+					print ("adding tracks %s to %s \n\n\n\n OKK!!" % (self.track, u.username))
+					trackCount += 1
 
-				self.track['permalink_url'] = t.permalink_url
-				self.user['soundcloud']['tracks'].append(copy.deepcopy(self.track))
 
 			# self.user['soundcloud']['tracks'] = tracks
 
@@ -91,8 +99,8 @@ class Pregame(object):
 
 
 			self.users.append(copy.deepcopy(self.user))
-			print "on number %d " % i
-			i += 1
+
+		 	artistCount += 1
 
 		newJson = {
 			'users': self.users
@@ -105,15 +113,3 @@ class Pregame(object):
 		print self.users
 
 Pregame().refresh()
-
-		# self.testDict = {
-		# 	'name': 'me',
-		# 	'age': 24
-		# }
-		#
-		# with open("out.json", "w") as outfile:
-    	# 	json.dump({'numbers':n, 'strings':s, 'x':x, 'y':y}, outfile, indent=4)
-
-		# json_file = "out.json"
-		# json_data = open(json_file)
-		# self.data = json.load(json_data)

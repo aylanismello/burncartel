@@ -249,7 +249,7 @@ function DataService(){
 
 					},
 					onend: function(){
-						console.log("seeing if has next");
+						console.log("\n\nSEEING IF HAS NEXT \n\n");
 						self.hasNext();
 
 					}
