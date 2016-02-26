@@ -1,6 +1,9 @@
 var app = angular.module('myapp', ['ngMaterial']);
 
-
+app.config(['$interpolateProvider', function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{[');
+  $interpolateProvider.endSymbol(']}');
+}]);
 
 
 function DataService(){
@@ -20,6 +23,7 @@ function DataService(){
 		audio: null,
 		pos: 0,
 		permalink_url: '',
+		trackArt: '',
 		howl: []
 	};
 
@@ -34,6 +38,10 @@ function DataService(){
 		loadedOnce = true;
 		// console.log("setting loaded once to " + loadedOnce);
 
+	};
+
+	this.getCurrentTrackArt = function(){
+		return trackArt;
 	};
 
 	this.getInitialLoadState = function(){
@@ -70,6 +78,7 @@ function DataService(){
 			feedz_[0].state.playedBefore = true;
 			currentTrack.index = 0;
 			currentTrack.title = feedz_[0].track.title;
+			currentTrack.trackArt = feedz_[0].track.artwork_url;
 			currentTrack.playingBool = true;
 
 
@@ -88,6 +97,7 @@ function DataService(){
 		else{
 			// currentTrack.audio.play();
 			songs[currentTrack.index].play();
+			currentTrack.trackArt = feedz_[0].track.artwork_url;
 			currentTrack.playingBool = true;
 		}
 
@@ -139,6 +149,7 @@ function DataService(){
 
 			currentTrack.index = idtho;
 			currentTrack.title = feedz_[idtho].track.title;
+			currentTrack.trackArt = feedz_[0].track.artwork_url;
 			// currentTrack.audio = new Audio(feedz_[idtho].track.url);
 
 
@@ -233,23 +244,22 @@ function DataService(){
 
 	this.addHowlers = function(newSongs){
 
-		console.log('adding howlers..');
-		// for(i = 0; i < newSongsJSON.length; i++){
 		songs.push(
 				new Howl({
 					urls: [newSongs['track']['url']],
 					buffer: true,
+					volume: 0.5,
 					onload:function(){
 						console.log(newSongs['track']['title'] + " was loaded!");
 						// this.play();
 						// songs[0].play();
 					},
 					onplay: function(){
-						console.log(newSongs['track']['title'] + " was played!");
+						console.log(newSongs['track']['title'] + " is being played at " + this.pos());
 
 					},
 					onend: function(){
-						console.log("\n\nSEEING IF HAS NEXT \n\n");
+						console.log("\n\n\t track considered over at " + this.pos() + " \n\n");
 						self.hasNext();
 
 					}
@@ -564,12 +574,6 @@ app.controller('playCtrl', function(DataService){
 	var self = this;
 
 
-
-
-	self.shout = function(){
-		alert('SHOUT');
-	};
-
 	self.hasNext = function(){
 
 		DataService.hasNext();
@@ -583,6 +587,13 @@ app.controller('playCtrl', function(DataService){
 		// 	location.reload();
 
 
+
+	};
+
+	self.goToTrackDiv = function() {
+
+		theURL = "#" + DataService.getCurrentTrackIndex();
+		console.log("go to " + theURL);
 
 	};
 
@@ -637,6 +648,12 @@ app.controller('playCtrl', function(DataService){
 
 	self.ok = function() {
 		alert('ok!');
+	};
+
+
+	self.getCurrentTrackArt = function(){
+		console.log("should return " + DataService.getCurrentTrackArt());
+		return DataService.getCurrentTrackArt();
 	};
 
 

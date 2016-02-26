@@ -1,0 +1,55 @@
+<html ng-app="sound" ng-controller="soundCtrl as sound_ctrl">
+<head>
+	<title>Burn Cartel</title>
+	<link href="{{url_for('static', filename='favicon.ico')}}" rel="shortcut icon" type="image/x-icon" />
+	<link rel="stylesheet" href="{{url_for('static', filename='animate.css')}}">
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,500' rel='stylesheet' type='text/css'>
+	<link href="{{url_for('static', filename='main.css')}}" rel='stylesheet' type='text/css'>
+<body>
+
+	<button ng-click="sound_ctrl.getter()">sup</button>
+
+	
+	<sound-manager>
+
+
+		<button music-player="play" add-song="{ id: 'one',
+    title: 'Rain',
+    artist: 'Drake',
+    url: 'http://www.schillmania.com/projects/soundmanager2/demo/_mp3/rain.mp3'
+}">+</button>
+
+	Currently Playing: {[ currentPlaying.title ]} by {[ currentPlaying.artist ]}
+
+
+
+
+	</sound-manager>
+
+
+
+
+
+
+</body>
+
+<link rel="stylesheet" href={{url_for('static', filename='bower_components/angular-material/angular-material.min.css')}}>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+ <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" ></script>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<script src="{{url_for('static', filename='bower_components/howler.js/howler.min.js')}}"></script>
+	<script src="{{url_for('static', filename='bower_components/angular-soundmanager2/dist/angular-soundmanager2.min.js')}}"></script>
+
+
+	<script src="{{url_for('static', filename='main.js')}}"></script>
+	<script src="{{url_for('static', filename='main2.js')}}"><script>
+
+
+</html>

@@ -22,6 +22,10 @@ def index():
 def howler():
 	return render_template('howler.html')
 
+@app.route('/tunes')
+def tunes():
+	return render_template('tester.html')
+
 @app.route('/about')
 def about():
 	return 'here is all about us!!'

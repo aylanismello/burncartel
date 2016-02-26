@@ -10,17 +10,16 @@
 
 </head>
 <body ng-controller="playCtrl as play_ctrl" ng-keypress="play_ctrl.key($event)" >
-<!-- space:32, enter:13, right:39, left: 40 ($event.charCode==13)?play_ctrl.toggle():return-->
 
 <div id="super-container" class='center'>
 
 
-	<div class='header' >
+	<div class='header' style="background-image: url('play_ctrl.getCurrentTrackArt()')">
 
 		<img ng-click='play_ctrl.toggle()' id='logo' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'>
 
 		<!--  ahref = trackElement.permalink_url, just sayin... make sure u open in new window.-->
-		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()'> </h3>
+		<h3 id="header-track-title" ng-bind='play_ctrl.getCurrentTrack()' ng-click="play_ctrl.goToTrackDiv()"> </h3>
 		<button id='prev' class='playback' ng-click='play_ctrl.hasPrev()'>Prev</button>
 
 		<div ng-controller="AppCtrl"  id="popupContainer" style='display: inline'>
@@ -36,40 +35,29 @@
 	</div>
 
 
-
-
-
-
-
-
-
-	<!-- <div class='header-mobile' >
-		<img ng-click='play_ctrl.toggle()' id='logo-mobile' ng-class='play_ctrl.getAnimateState()' src='../static/images/BC1.png'
-		ng-swipe-left='play_ctrl.hasNext()' ng-swipe-right='play_ctrl.hasPrev()'>
-	</div>  -->
-
-
-
-
-
 	</br></br>
 
 
 <div class='content'>
 
 		<div ng-hide='get_ctrl.getInitialLoadState()'>
-		<h2>LOADING FEED</h2>
-
+			<h2>LOADING FEED</h2>
 		</div>
+
 		<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index " ng-show='get_ctrl.getInitialLoadState()'>
 
 
+			<div id="{[$index]}" class="track-element">
+
+
+
 				<img id="album-art" class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-				src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
+				src={[f.track.artwork_url]} ng-class='play_ctrl.isPlaying($index)'>
 				<h2 class='track-info' id='username' ng-bind='f.username'></h2>
-				<h3 style="color: black;" class='track-info' id="track-title"> <a href="{{f.track.permalink_url|angular}}" target="_blank">{{f.track.title|angular}}</a>
+				<h3 style="color: black;" class='track-info' id="track-title"> <a href="{[f.track.permalink_url]}" target="_blank">{[f.track.title]}</a>
 </h3>
 			</div>
+		</div>
 
 			<div layout="row" layout-sm="column" layout-align="space-around" ng-hide='get_ctrl.getLoadState()'>
 			<md-progress-circular md-mode="indeterminate" ng-controller='AppCtrl'></md-progress-circular>
@@ -86,83 +74,10 @@
 </div>
 
 
-<!-- <div class='content-mobile'>
-
-	<h2 ng-hide='get_ctrl.getLoadState()'>LOADING FEED</h2>
-	<div  data-ng-repeat="f in get_ctrl.getFeed() track by $index">
-
-		<img class='paused' ng-attr-id="get_ctrl.echo($index)" ng-click='play_ctrl.playPause($index)'
-		src={{f.track.artwork_url|angular}} ng-class='play_ctrl.isPlaying($index)'>
-		<h2 ng-bind='f.username'></h2>
-		<h3 id="track-title" ng-bind='f.track.title'></h3>
-	</div>
-	<button ng-show='get_ctrl.getLoadState()' class='playback'>More</button>
-
-</div> -->
-
-
-<!-- <footer class='center settings-mobile'>
-
-	<span> <button>GENRES</button> <button>CURRENT TRACK</button> <button>PLAYLIST</button> </span>
-
-
-
-</footer> -->
-
-
-
-
-<!-- <footer class='settings' ng-controller="Effects as fx"> -->
-
-
-		<!-- <md-button id="help" class="md-raised md-primary playback"  ng-cloak>?
-			 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> HIT SPACE TO START </md-tooltip>
-		</md-button> -->
-
-
-<!--
-		<div ng-controller="Genres">
-				<button id='help' class='playback'>?</button>
-
-				<md-button style='display: inline' class="md-raised md-primary playback"  ng-click="get_ctrl.getFeedTho({{data.selectedOption|angular}})" ng-cloak> BURN
-					 <md-tooltip md-visible="demo.showTooltip"  md-direction="{{demo.tooltipDirection}}"> </md-tooltip>
-				</md-button>
-
-		    <select name="mySelect" id="mySelect" style='display: inline'
-		      ng-options="option.name for option in data.availableOptions track by option.id"
-		      ng-model="data.selectedOption"></select>
-
-
-
-			<div layout>
-					 <h4 style='margin-right:1em; margin-left: 0.5em;'>Basic</h4>
-					 <md-slider  style='margin-bottom: 0em; bottom:0px;' flex md-discrete ng-model="rating" step="1" min="1" max="5" aria-label="rating"></md-slider>
-					 <h4 style='margin-left:1em; margin-right:0.5em;'> Eclectic </h4>
-				</div>
-
-	  <tt>option = {{data.selectedOption|angular}}</tt><br/>
-	</div> -->
-
-
-
-
-							<!-- <tt>slide = {{rating|angular}}</tt> -->
-
-
-
-
-
-
-
-<!-- </footer> -->
-
 <footer class='settings' style='padding: 1em 0em; display:left;'> Audio by <a href="http://soundcloud.com"> Soundcloud</a>.
 	Taste and programming by <a href='{{url_for('about')}}'>Burn Cartel</a>. </footer>
 
 </div>
-
-
-
 
 
 
@@ -181,7 +96,20 @@
 
 	<script src="{{url_for('static', filename='bower_components/howler.js/howler.min.js')}}"></script>
 
-	<!-- <script src="{{url_for('static', filename='bower_components/angular/angular.min.js')}}"> </script> -->
+
+	<!-- <script src="{{url_for('static', filename='js/app.js')}}"</script> -->
+
+
+
+	<!-- <script src="{{url_for('static', filename='js/factories/dataservice.js')}}"></script> -->
+	<!-- <script src="{{url_for('static', filename='js/controllers/getctrl.js')}}"></script> -->
+	<!-- <script src="{{url_for('static', filename='js/controllers/appctrl.js')}}"></script> -->
+	<!-- <script src="{{url_for('static', filename='js/controllers/effects.js')}}"></script> -->
+
+	<!-- <script src="{{url_for('static', filename='js/controllers/playctrl.js')}}"></script> -->
+
+
+
 	<script src="{{url_for('static', filename='main.js')}}"></script>
 
 
