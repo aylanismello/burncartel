@@ -1,3 +1,7 @@
 # burncartel
 
-just starting out
+My music curation website.
+
+Powered by Flask and AngularJS. Serving audio from Soundcloud.
+
+
