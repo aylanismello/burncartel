@@ -1,4 +1,6 @@
+from datetime import datetime
 import json, soundcloud, copy
+
 
 class Pregame(object):
 	def __init__(self):
@@ -109,7 +111,9 @@ class Pregame(object):
 		with open('out.json', 'w') as fp:
 			json.dump(newJson, fp)
 
+		meta = open("out.meta", "w")
+		meta.write("last updated at %s" %  datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-		print self.users
+		#print self.users
 
 Pregame().refresh()
